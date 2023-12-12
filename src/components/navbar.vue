@@ -9,7 +9,7 @@
       <span class="">&#9776;</span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <form class="d-flex  mx-auto mb-2 mb-lg-0" role="search">
+        <form class="d-block d-md-flex  mx-auto mb-2 mb-lg-0" role="search">
               <div class="form-check form-switch mx-4 my-auto" v-if="searchByDate" style="font-size: 0.8rem !important;" >
                 <input class="form-check-input" v-model="switchVal" type="checkbox" role="switch" @change="clearData" id="flexSwitchCheckDefault">
                 <label class="form-check-label" style="width: max-content;" for="flexSwitchCheckDefault">by date</label>
@@ -17,16 +17,16 @@
               
               <VueDatePicker v-model="searchVal.date"  v-if="searchByDate && switchVal" placeholder="pick a date" class="mx-4" text-input auto-apply :enable-time-picker="false" @update:model-value="search"/>
             <div>
-              <input type="search"  v-if="searchByText" placeholder="Search here" style="font-size: 0.8rem !important;" class="search-field px-3 py-1" v-model="searchVal.searchValue"  @keyup="search()"/>
+              <input type="search"  v-if="searchByText" placeholder="Search here" style="font-size: 0.8rem !important;" class="search-field px-3 py-1 my-2 " v-model="searchVal.searchValue"  @keyup="search()"/>
             </div>
-            <VueDatePicker class="mx-4" v-if="searchByRange && !switchVal" placeholder="select a range" v-model="searchVal.range" range multi-calendars auto-apply :enable-time-picker="false" @update:model-value="search"/>
+            <VueDatePicker class=" mx-0 mx-lg-4 my-lg-2 my-2 " v-if="searchByRange && !switchVal" placeholder="select a range" v-model="searchVal.range" range multi-calendars auto-apply :enable-time-picker="false" @update:model-value="search"/>
         
         </form>
 
-      <ul class="navbar-nav d-flex">
+      <ul class="navbar-nav d-flex justify-content-end">
         <li class="nav-item">
         <div>
-        <div class="d-flex">
+        <div class="d-flex justify-content-end">
             <div class="btn-group">
               <span  class="border-2 notify rounded-circle" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false" style="padding-inline: 0.6rem !important; height: fit-content; padding-block: 0.30rem !important; background-color:rgb(238, 238, 238)">
                   <i class="bi bi-bell position-relative fs-6">
@@ -275,7 +275,7 @@ export default {
   background-color: transparent !important;
 }
 form {
-  display: flex;
+  /* display: flex; */
   flex-direction: row;
 }
 .search-field {

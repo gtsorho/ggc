@@ -18,11 +18,11 @@
             <span class="border border-3 border-danger shadow rounded-1 my-2 p-1" style="border-color:#ff0e0e5e!important">
                 <li class="list-group-item fw-bolder p-0   d-flex justify-content-between align-items-center" >
                 Outstanding Debt
-                <span class="text-dark">{{debts[1].toFixed(2)}}</span>
+                <span class="text-dark" v-if="debts">{{debts[1].toFixed(2)}}</span>
                 </li>
                 <li class="list-group-item p-0 mt-0 fst-italic d-flex justify-content-between align-items-center">
                 Closest Due Date
-                <span class="text-dark">{{ new Date(closestDate.due).toDateString() }}</span>
+                <span v-if="closestDate" class="text-dark">{{ new Date(closestDate.due).toDateString() }}</span>
                 </li>
             </span>
             

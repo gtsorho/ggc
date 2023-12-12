@@ -1,7 +1,7 @@
 <template >
     <div class="container  ">
         <div class="row  p-2">
-            <div class=" col-12 col-lg-8 mx-2">
+            <div class=" col-12 col-lg-8">
                 <div class="container ">
                     <div class="row border rounded-1  border-warning needs-validation pb-4">
                         <div class="col-md-4">
@@ -22,12 +22,12 @@
                             <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" @click="createTithe" type="submit" >Save</button>
                             <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateTithe" id="inputName4" placeholder="john doe">Update</button>
                             <button class="btn btn-sm btn-success" v-if="update" @click="update = false, tithe = {amount:0, date:null, memberId:null}" id="inputName4" placeholder="john doe">+</button>
-					        <p :class="msgColor" class="text-capitalize" style="font-size:13px">{{msg}}</p>
+					        <p :class="msgColor" class="text-capitalize d-block" style="font-size:13px">{{msg}}</p>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <div class="table-responsive my-3">
+                    <div class="table-responsive my-3"  style="max-height:4in">
                         <table class="table table-hover " style="font-size:14px">
                         <thead>
                             <tr>

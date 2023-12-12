@@ -31,12 +31,12 @@
                             <button class="btn btn-sm btn-outline-warning" id="inputName4" v-if="!update" @click="createDebt">Save</button>
                             <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateDebt" id="inputName4" placeholder="john doe">Update</button>
                             <button class="btn btn-sm btn-success" v-if="update" @click="update = false, debt = {amount:null, date:null, category:null}" id="inputName4" placeholder="john doe">+</button>
-                            <p :class="msgColor" class="text-capitalize" style="font-size:13px">{{msg}}</p>
+                            <p :class="msgColor" class="text-capitalize d-block" style="font-size:13px">{{msg}}</p>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <div class="table-responsive my-3">
+                    <div class="table-responsive my-3" style="max-height:4in">
                         <table class="table table-hover " style="font-size:14px">
                         <thead>
                             <tr>

@@ -4,10 +4,10 @@
   <div>
     <span class="text-start" >
       <div class="d-flex justify-content-center"> 
-        <!-- <img  style="width:30%;" v-if="sidebarbool"  src="../assets/logo.png"> 
-        <img  style="width:60%;" v-else class="mt-2" src="../assets/logo.png">  -->
-        <h1 class="text-warning" v-if="sidebarbool" style=" margin-bottom: 0.2rem;">GGC<span style="font-size:12px"></span></h1>
-        <h1 class="text-warning" v-else style=" font-size:100%; margin-bottom: 0.2rem;">GGC</h1>
+        <img  style="width:30%;" v-if="sidebarbool"  src="../assets/logo.png">
+        <img  style="width:80%;" v-else class="mt-2" src="../assets/logo.png">
+        <!-- <h1 class="text-warning" v-if="sidebarbool" style=" margin-bottom: 0.2rem;">GGC<span style="font-size:12px"></span></h1>
+        <h1 class="text-warning" v-else style=" font-size:50%; margin-bottom: 0.2rem;">GGC</h1> -->
       </div>
 
         <hr class=" mx-2" style="border: 1.55px solid rgb(120 120 120)">  
@@ -70,13 +70,21 @@ export default {
     },
     watch:{
       sidebarVal(newVal){
-        console.log(newVal)
         if(newVal){
           this.sidebarbool = true
             document.getElementById("mySidenav").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";            
         }else{
           this.sidebarbool = false
+            document.getElementById("mySidenav").style.width = "50px";
+            document.getElementById("main").style.marginLeft= "50px";
+        }
+      },
+      sidebarbool(newVal){
+        if(newVal){
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";            
+        }else{
             document.getElementById("mySidenav").style.width = "50px";
             document.getElementById("main").style.marginLeft= "50px";
         }

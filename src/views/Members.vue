@@ -28,12 +28,12 @@
                             <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click="createMember()" placeholder="john doe">Save</button>
                             <button class="btn btn-sm btn-outline-info mx-1" @click="updateMember" v-else id="inputName4"  placeholder="john doe">update</button>
                             <button class="btn btn-sm btn-success" v-if="update" @click="update = false, member={  name:null, location:null,phone:null,phone_two:null,profession:null}" id="inputName4" placeholder="john doe">+</button>
-                            <p :class="msgColor" class="text-capitalize" style="font-size:13px">{{msg}}</p>
+                            <p :class="msgColor" class="text-capitalize d-block" style="font-size:13px">{{msg}}</p>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <div class="table-responsive my-3">
+                    <div class="table-responsive my-3"  style="max-height:4in">
                         <table class="table table-hover " style="font-size:14px">
                         <thead>
                             <tr>

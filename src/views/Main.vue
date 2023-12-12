@@ -32,6 +32,14 @@ export default {
             this.login = true
         }
     },
+    mounted(){
+      var w = window.innerWidth;
+      if(w < 750){
+        this.sidebarbool = false      
+      }else{
+        this.sidebarbool = true
+      }
+    },
     methods:{
         passData(data){
             this.navData = data
