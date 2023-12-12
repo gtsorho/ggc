@@ -6,8 +6,8 @@
       <div class="d-flex justify-content-center"> 
         <!-- <img  style="width:30%;" v-if="sidebarbool"  src="../assets/logo.png"> 
         <img  style="width:60%;" v-else class="mt-2" src="../assets/logo.png">  -->
-        <h1 class="text-warning" v-if="sidebarbool" style=" margin-bottom: 0.2rem;">NXY<span style="font-size:12px">B. planner</span></h1>
-        <h1 class="text-warning" v-else style=" font-size:100%; margin-bottom: 0.2rem;">NXY</h1>
+        <h1 class="text-warning" v-if="sidebarbool" style=" margin-bottom: 0.2rem;">GGC<span style="font-size:12px"></span></h1>
+        <h1 class="text-warning" v-else style=" font-size:100%; margin-bottom: 0.2rem;">GGC</h1>
       </div>
 
         <hr class=" mx-2" style="border: 1.55px solid rgb(120 120 120)">  

@@ -4,16 +4,16 @@
           <img class="w-100" src='../assets/welcome.svg' alt="">        
     </div>
     <div class="col d-flex align-items-center justify-content-center">
-      <h1 class="fw-bolder text-light "  style="font-size:60px;"> <span class="text-warning" style="font-size:90px; letter-spacing: 10px!important;">NYX</span> <br> <span class="text-warning">B</span>udget <span class="text-warning">P</span>lanner</h1>
+      <h1 class="fw-bolder text-light "  style="font-size:60px;"> <span class="text-warning" style="font-size:80px; letter-spacing: 8px!important;">GGC A/G</span> <br> <span class="text-warning">F</span>inance <span class="text-warning">M</span>gt</h1>
     </div>
   </div>
 	<div v-else class="d-flex justify-content-center align-items-center something" style="min-height: 80vh!important;">
-		<div class="row main-content bg-success text-center shadow-lg">
+		<div class="row main-content bg-transparent text-center shadow-lg">
 			<div class="col-md-4 text-center company__info">
 				<span class="company__logo"> 
                     <!-- <img src="../assets/logo.png" width="70" alt=""> -->
                 </span>
-				<h1 class="company_title "><h1 class="fw-bolder text-light "  style="font-size:20px;letter-spacing: 1px"> <span class="text-light" style="font-size:60px; letter-spacing: 10px!important;">NYX</span> <br> <span class="text-dark">B</span>udget <span class="text-dark">P</span>lanner</h1></h1>
+				<h1 class="company_title "><h1 class="fw-bolder text-light "  style="font-size:20px;letter-spacing: 1px"> <span class="text-light" style="font-size:40px; letter-spacing: 8px!important;">GGC A/G</span> <br> <span class="text-dark">F</span>inance <span class="text-dark">M</span>gt</h1></h1>
 			</div>
 			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
 				<div class="container-fluid">
