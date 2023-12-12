@@ -3,7 +3,7 @@
         <div class="row  p-2">
             <div class=" col mx-2 ">
                 <div class="container ">
-                    <form class="row border rounded-1  border-warning needs-validation pb-4" @submit.prevent="createMember"   >
+                    <div class="row border rounded-1  border-warning needs-validation pb-4"   >
                         <div class="col-md-6">
                             <label for="inputName4" class="form-label">Name</label>
                             <input type="text" required v-model="member.name"  class="form-control form-control-sm" id="inputName4" placeholder="john doe">
@@ -25,12 +25,12 @@
                             <input type="text" v-model="member.profession"  class="form-control form-control-sm" id="inputName4" placeholder="Tailor">
                         </div>
                          <div class="col-md-2 d-flex align-items-end ">
-                            <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit"  placeholder="john doe">Save</button>
+                            <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click="createMember()" placeholder="john doe">Save</button>
                             <button class="btn btn-sm btn-outline-info mx-1" @click="updateMember" v-else id="inputName4"  placeholder="john doe">update</button>
                             <button class="btn btn-sm btn-success" v-if="update" @click="update = false, member={  name:null, location:null,phone:null,phone_two:null,profession:null}" id="inputName4" placeholder="john doe">+</button>
                             <p :class="msgColor" class="text-capitalize" style="font-size:13px">{{msg}}</p>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div>
                     <div class="table-responsive my-3">

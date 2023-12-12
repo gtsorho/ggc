@@ -3,7 +3,7 @@
         <div class="row  p-2">
             <div class=" col-12 col-lg-8 mx-2">
                 <div class="container ">
-                    <div class="row border rounded-1  border-warning needs-validation pb-4" @submit.prevent="createTithe">
+                    <div class="row border rounded-1  border-warning needs-validation pb-4">
                         <div class="col-md-4">
                             <label for="inputName4" class="form-label">Member</label>
                             <select class="form-select form-select-sm" v-model="tithe.memberId" aria-label="Default select example">

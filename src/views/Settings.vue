@@ -3,7 +3,7 @@
         <div class="row  p-2">
             <div class=" col-12 col-md-4 mx-2 ">
                 <div class="container ">
-                    <form class="row border rounded-1  border-warning needs-validation pb-4" @submit.prevent="createUser"   >
+                    <form class="row border rounded-1  border-warning needs-validation pb-4"    >
                         <div class="col-md-12">
                             <label for="inputName4" class="form-label">Username</label>
                             <input type="text" required v-model="user.username"  class="form-control form-control-sm" id="inputName4" placeholder="johndoe">
@@ -17,7 +17,7 @@
                             <input type="password" required v-model="user.repeat_password" class="form-control form-control-sm" id="inputName5" placeholder="**********">
                         </div>
                          <div class="col-md-2 p-2 d-flex align-items-end ">
-                            <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit"  placeholder="john doe">Save</button>
+                            <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click="createUser()" placeholder="john doe">Save</button>
                             <button class="btn btn-sm btn-outline-info mx-1" @click="updateUser" v-else id="inputName4"  placeholder="john doe">update</button>
                             <button class="btn btn-sm btn-success" v-if="update" @click="update = false, user={ username:null, password:null, repeat_password:null}" id="inputName4" placeholder="john doe">+</button>
                         </div>
