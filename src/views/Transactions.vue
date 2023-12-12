@@ -111,7 +111,7 @@ export default {
             this.update = true
         },
         updateLedger(){
-            axios.post('http://localhost:3000/api/ledgers/update/'+this.transaction.id, this.transaction,
+            axios.post('http://ggc.pangtresses.com/api/ledgers/update/'+this.transaction.id, this.transaction,
           { headers:{'Authorization': `Bearer ${this.token}`}}
             ).then((res)=>{
                 this.getTransactions(0)
@@ -128,7 +128,7 @@ export default {
         getTransactions(i){
             
             this.loading = true
-            axios.get('http://localhost:3000/api/ledgers/ledgers/'+ i,
+            axios.get('http://ggc.pangtresses.com/api/ledgers/ledgers/'+ i,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then((res)=>{
                 this.transactions = res.data
@@ -139,7 +139,7 @@ export default {
                 this.axiosRequestInProgress = false;
             });
 
-            axios.get('http://localhost:3000/api/ledgers/active',
+            axios.get('http://ggc.pangtresses.com/api/ledgers/active',
             { headers:{'Authorization': `Bearer ${this.token}`}}
             ).then((res)=>{
                 this.ledgerhead = res.data
@@ -164,7 +164,7 @@ export default {
                 debit: parseFloat(this.transaction.debit).toFixed(2)
             }
 
-            axios.post('http://localhost:3000/api/ledgers', data,
+            axios.post('http://ggc.pangtresses.com/api/ledgers', data,
             { headers:{'Authorization': `Bearer ${this.token}`}}
             ).then((res)=>{
                 this.getTransactions(0)
@@ -182,7 +182,7 @@ export default {
             let str = this.vendor.name
             
             if(str || str !== "" ){
-                axios.get(`http://localhost:3000/api/vendor/search/${str}`,
+                axios.get(`http://ggc.pangtresses.com/api/vendor/search/${str}`,
                 { headers:{'Authorization': `Bearer ${this.token}`}}
                 ).then((res)=>{
                     this.vendors = res.data

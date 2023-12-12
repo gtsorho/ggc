@@ -153,7 +153,7 @@ export default {
         },
         createRecord(){
             
-            axios.post('http://localhost:3000/api/records/', this.record, 
+            axios.post('http://ggc.pangtresses.com/api/records/', this.record, 
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getRecords()
@@ -169,7 +169,7 @@ export default {
             })
         },
         updateRecord(){
-            axios.post('http://localhost:3000/api/records/update/'+this.record.id, this.record, 
+            axios.post('http://ggc.pangtresses.com/api/records/update/'+this.record.id, this.record, 
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getRecords()
@@ -185,7 +185,7 @@ export default {
             })
         },
         deleteRecord(id){
-            axios.get('http://localhost:3000/api/records/delete/'+ id, 
+            axios.get('http://ggc.pangtresses.com/api/records/delete/'+ id, 
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getRecords()
@@ -196,7 +196,7 @@ export default {
         }, 
         deleteSelectedItems() {
             const deletePromises = this.selectedItems.map(id =>
-                axios.delete(`http://localhost:3000/api/records/delete/${id}`,           
+                axios.delete(`http://ggc.pangtresses.com/api/records/delete/${id}`,           
                 { headers:{'Authorization': `Bearer ${this.token}`}})
             );
             Promise.all(deletePromises)
@@ -208,7 +208,7 @@ export default {
             });
         },
         getRecords(){
-            axios.get('http://localhost:3000/api/records/', 
+            axios.get('http://ggc.pangtresses.com/api/records/', 
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.records =  response.data

@@ -99,7 +99,7 @@ export default {
     },
     methods:{
         login(){
-            axios.post('http://localhost:3000/api/users/login', this.creds,
+            axios.post('http://ggc.pangtresses.com/api/users/login', this.creds,
             )
             .then((response) => {
                 this.setCookie('token', response.data)

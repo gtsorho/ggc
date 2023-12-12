@@ -148,7 +148,7 @@ export default {
     },
     methods: {
           getRecords(){
-            axios.get('http://localhost:3000/api/records/', 
+            axios.get('http://ggc.pangtresses.com/api/records/', 
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.records =  response.data
@@ -158,7 +158,7 @@ export default {
             })
         },
         getReports(){
-          axios.post('http://localhost:3000/api/dashboards/search','',
+          axios.post('http://ggc.pangtresses.com/api/dashboards/search','',
             { headers:{'Authorization': `Bearer ${this.token}`}})
           .then(response => {
             this.uppercards[0].amount = response.data.lastEntry.balance.toFixed(2)

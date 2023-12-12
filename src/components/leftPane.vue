@@ -67,7 +67,7 @@ export default {
     },
     methods:{
         getTransactions(){
-            axios.get('http://localhost:3000/api/ledgers/ledgers/'+ 0,
+            axios.get('http://ggc.pangtresses.com/api/ledgers/ledgers/'+ 0,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then((res)=>{
                 this.transactions = res.data
@@ -76,7 +76,7 @@ export default {
             })
         },
         getDebts(){
-            axios.get('http://localhost:3000/api/debts/',
+            axios.get('http://ggc.pangtresses.com/api/debts/',
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.debts =  response.data

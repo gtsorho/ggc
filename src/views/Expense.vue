@@ -145,7 +145,7 @@ export default {
     },
     methods:{
         createExpense(){
-            axios.post('http://localhost:3000/api/expenses/', this.expense,
+            axios.post('http://ggc.pangtresses.com/api/expenses/', this.expense,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getExpenses()
@@ -161,7 +161,7 @@ export default {
             })
         },
         merge(){
-            axios.get('http://localhost:3000/api/expenses/merge/',
+            axios.get('http://ggc.pangtresses.com/api/expenses/merge/',
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getExpenses()
@@ -172,7 +172,7 @@ export default {
             })
         },
         getExpenses(){
-            axios.get('http://localhost:3000/api/expenses/',
+            axios.get('http://ggc.pangtresses.com/api/expenses/',
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.expenses =  response.data
@@ -193,7 +193,7 @@ export default {
             this.expense = data
         },
         updateExpense(){
-            axios.post('http://localhost:3000/api/expenses/update/' + this.expense.id,  this.expense,
+            axios.post('http://ggc.pangtresses.com/api/expenses/update/' + this.expense.id,  this.expense,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getExpenses()
@@ -210,7 +210,7 @@ export default {
         },
         deleteSelectedItems() {
             const deletePromises = this.selectedItems.map(id =>
-                axios.delete(`http://localhost:3000/api/expenses/delete/${id}`,
+                axios.delete(`http://ggc.pangtresses.com/api/expenses/delete/${id}`,
                  { headers:{'Authorization': `Bearer ${this.token}`}})
             );
             Promise.all(deletePromises)
@@ -222,7 +222,7 @@ export default {
             }); 
         },
          deleteItem(id){
-            axios.get('http://localhost:3000/api/expenses/delete/'+ id,
+            axios.get('http://ggc.pangtresses.com/api/expenses/delete/'+ id,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getExpenses()

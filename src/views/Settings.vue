@@ -201,7 +201,7 @@ export default {
         createUser(e){
             e.preventDefault();
             
-            axios.post('http://localhost:3000/api/users/', this.user,
+            axios.post('http://ggc.pangtresses.com/api/users/', this.user,
                 { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getUsers()
@@ -219,7 +219,7 @@ export default {
         createLedger(e){
             e.preventDefault();
             delete this.ledgerhead.active
-            axios.post('http://localhost:3000/api/ledgers/ledgerhead', this.ledgerhead,
+            axios.post('http://ggc.pangtresses.com/api/ledgers/ledgerhead', this.ledgerhead,
                 { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getUsers()
@@ -235,7 +235,7 @@ export default {
             })
         },
         updateUser(){
-            axios.post('http://localhost:3000/api/users/update/'+ this.user.id, this.user,
+            axios.post('http://ggc.pangtresses.com/api/users/update/'+ this.user.id, this.user,
                       { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getUsers()
@@ -251,7 +251,7 @@ export default {
             })
         },
         deleteUser(id){
-            axios.get('http://localhost:3000/api/users/delete/'+ id,
+            axios.get('http://ggc.pangtresses.com/api/users/delete/'+ id,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getUsers()
@@ -261,7 +261,7 @@ export default {
             })
         },
         updateLedgerHead(){
-            axios.post('http://localhost:3000/api/ledgers/ledgerhead/update/'+ this.ledgerhead.id, this.ledgerhead,
+            axios.post('http://ggc.pangtresses.com/api/ledgers/ledgerhead/update/'+ this.ledgerhead.id, this.ledgerhead,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getLedgerHeads()
@@ -277,7 +277,7 @@ export default {
             })
         },
         deleteLedgerHead(id){
-            axios.get('http://localhost:3000/api/ledgers/ledgerhead/delete/'+ id,
+            axios.get('http://ggc.pangtresses.com/api/ledgers/ledgerhead/delete/'+ id,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getLedgerHeads()
@@ -289,7 +289,7 @@ export default {
 
         deleteSelectedItems() {
             const deletePromises = this.selectedItems.map(user =>
-                axios.delete(`http://localhost:3000/api/users/delete/${user.id}`,           
+                axios.delete(`http://ggc.pangtresses.com/api/users/delete/${user.id}`,           
                 { headers:{'Authorization': `Bearer ${this.token}`}}));
             Promise.all(deletePromises)
             .then(responses => {
@@ -300,7 +300,7 @@ export default {
             });
         },
         getUsers(){
-            axios.get('http://localhost:3000/api/users/',
+            axios.get('http://ggc.pangtresses.com/api/users/',
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.users =  response.data
@@ -310,7 +310,7 @@ export default {
             })
         },
         getLedgerHeads(){
-            axios.get('http://localhost:3000/api/ledgers/ledgerheads',
+            axios.get('http://ggc.pangtresses.com/api/ledgers/ledgerheads',
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.ledgerheads =  response.data
