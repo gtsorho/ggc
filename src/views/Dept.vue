@@ -1,7 +1,7 @@
 <template >
     <div class="container  ">
         <div class="row  p-2">
-            <div class=" col-8 col-md-8 mx-2 ">
+            <div class=" col-12 col-md-8 mx-2 ">
                 <div class="container ">
                     <div class="row border rounded-1  border-warning needs-validation p-4"  >
                          <div class="col-md-6">
@@ -27,7 +27,7 @@
                             <label for="inputName4" class="form-label">Paid</label>
                             <input type="text" required v-model="debt.paid" class="form-control form-control-sm" id="inputName4" placeholder="12.5">
                         </div>
-                        <div class="col-md-2 d-flex align-items-end ">
+                        <div class="col-md-2 d-flex align-items-end m-2">
                             <button class="btn btn-sm btn-outline-warning" id="inputName4" v-if="!update" @click="createDebt">Save</button>
                             <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateDebt" id="inputName4" placeholder="john doe">Update</button>
                             <button class="btn btn-sm btn-success" v-if="update" @click="update = false, debt = {amount:null, date:null, category:null}" id="inputName4" placeholder="john doe">+</button>

@@ -1,7 +1,7 @@
 <template >
     <div class="container  ">
         <div class="row  p-2">
-            <div class=" col-4 mx-2 ">
+            <div class=" col-12 col-md-4 mx-2 ">
                 <div class="container ">
                     <form class="row border rounded-1  border-warning needs-validation pb-4" @submit.prevent="createUser"   >
                         <div class="col-md-12">
@@ -345,6 +345,14 @@ export default {
     },
 }
 </script>
-<style >
-    
+<style scoped>
+    .accordion-button{
+        background-color: rgba(255, 208, 0, 0.422);
+    }
+    .accordion-button:focus{
+        border-color: none
+    }
+    .accordion-button:not(.collapsed) {
+        background-color:rgba(255, 208, 0, 0.422);
+    }
 </style>

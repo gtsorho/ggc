@@ -24,10 +24,10 @@
     <div class="mt-auto py-4" style="width:100%">
       <ul class="list-group list-group-flush">
         <li class="list-group-item border-0 p-0 my-2">
-          <router-link :to="{name:'settings'}" class="btn btn-sm btn-outline-warning " ><i class="bi bi-gear me-1" ></i><span v-if="sidebarbool">Settings</span> </router-link>
+          <router-link :to="{name:'settings'}" class="btn btn-sm btn-outline-warning justify-content-center d-flex justify-content-md-start " ><i class="bi bi-gear" ></i><span v-if="sidebarbool">Settings</span> </router-link>
         </li>
         <li class="list-group-item border-0 p-0 my-0">
-          <router-link :to="{name:'login'}" class=" btn btn-sm btn-outline-danger text-danger " @click="logout()" ><i class="bi bi-power me-1"></i><span v-if="sidebarbool">Logout</span> </router-link>
+          <router-link :to="{name:'login'}" class=" btn btn-sm btn-outline-danger text-danger justify-content-center d-flex justify-content-md-start" @click="logout()" ><i class="bi bi-power"></i><span v-if="sidebarbool">Logout</span> </router-link>
         </li>
       </ul>
     </div> 
