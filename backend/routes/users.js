@@ -9,7 +9,7 @@ const upload = multer()
 
 router.get('/auth', authenticateToken, uc.findUser);
 router.get('/', authenticateToken, uc.getUsers);
-router.post('/', [authenticateToken, upload.fields([])], uc.create);
+router.post('/',  upload.fields([]), uc.create);
 router.get('/update/:id', upload.fields([]),  authenticateToken, uc.update);
 router.get('/delete/:id', authenticateToken, uc.delete);
 router.post('/login', upload.fields([]), uc.login); 
