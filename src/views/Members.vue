@@ -130,9 +130,7 @@ export default {
         getType(index){
             return this.typeofDept[index]
         },
-        createMember(e){
-            e.preventDefault();
-            
+        createMember(){            
             axios.post('http://ggc.pangtresses.com/api/members/', this.member,
                       { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {

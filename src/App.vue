@@ -27,4 +27,20 @@ html, body, #app
 {
     height: 100%;
 }
+.form-control{
+    width: 100%;
+    border:0px solid transparent;
+    border-radius: 0;
+    border-bottom: 1px solid #aaa;
+    padding: .1em .1em .1em;
+    padding-left: 2em;
+    outline:none;
+    margin:.5em auto;
+    transition: all .5s ease;
+}        
+.form-control:focus{
+            border-bottom-color: #ffc107;
+            box-shadow: 0 0 5px #ffc1078d; 
+            border-radius: 4px;
+        }
 </style>
