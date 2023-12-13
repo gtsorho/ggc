@@ -15,7 +15,7 @@ module.exports = {
           where:{active:true}
         })
         let debts = await db.debt.findAll({
-          where:{ledgerHeadId: activeLedger_head}
+          where:{ledgerHeadId: activeLedger_head.id}
         })
         const result = await db.debt.findOne({
             attributes: [
@@ -167,7 +167,7 @@ module.exports = {
         const {searchValue, startDate, endDate} = req.body
 
         const whereClause = {
-          ledgerHeadId: activeLedger_head
+          ledgerHeadId: activeLedger_head.id
         };
         
         if (searchValue) {

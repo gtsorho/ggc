@@ -18,23 +18,22 @@ module.exports = {
 
      // ***********************************************SEARCH
      search: async (req, res) => {
-
+        let activeLedger_head = await db.ledger_head.findOne({
+          where:{active:true},
+        }) 
+      
         const {startDate, endDate} = req.body
-        const whereClause = {};
+        const whereClause = {
+          ledgerHeadId: activeLedger_head.id,
+        };
         
         if (startDate && endDate) {
             whereClause.createdAt = { [Op.between]: [startDate, endDate] };
         }
 
-        let activeLedger_head = await db.ledger_head.findOne({
-          where:{active:true},
-        }) 
-        
+
         let lastEntry = await db.ledger.findOne({
-          where: {
-              ledgerHeadId: activeLedger_head.id,
-              ...whereClause,
-          },
+          where: whereClause,
           order: [['id', 'DESC']],
         });
 

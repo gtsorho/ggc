@@ -18,7 +18,7 @@ module.exports = {
         })
 
         let tithes = await db.tithe.findAll({
-            where:{ledgerHeadId:activeLedger_head},
+            where:{ledgerHeadId:activeLedger_head.id},
             include:db.member
         })
         res.send(tithes)
@@ -165,7 +165,7 @@ module.exports = {
       const { searchValue, startDate, endDate } = req.body;
   
       const whereClause = {
-        ledgerHeadId: activeLedger_head
+        ledgerHeadId: activeLedger_head.id
       };
   
       if (searchValue) {

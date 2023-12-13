@@ -15,7 +15,7 @@ module.exports = {
             where:{active:true}
         })
         let income = await db.income.findAll({
-            where:{ledgerHeadId:activeLedger_head}
+            where:{ledgerHeadId:activeLedger_head.id}
         })
         res.send(income)
     },
@@ -125,11 +125,11 @@ module.exports = {
         let activeLedger_head = await db.ledger_head.findOne({
             where:{active:true}
         })
-        
+
         const {searchValue, startDate, endDate} = req.body
 
         const whereClause = {
-            ledgerHeadId: activeLedger_head
+            ledgerHeadId: activeLedger_head.id
         };        
         if (searchValue) {
             if (isValidDate(searchValue)) {
