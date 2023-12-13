@@ -44,7 +44,7 @@ html, body, #app
     padding: .1em .1em .1em;
     padding-left: 2em;
     outline:none;
-    margin:.5em auto;
+    /* margin:.5em auto; */
     transition: all .5s ease;
 }        
 .form-control:focus{

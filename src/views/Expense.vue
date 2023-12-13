@@ -24,10 +24,12 @@
                             <input type="date" v-model="expense.date" required  class="form-control form-control-sm" id="inputName4" >
                         </div>
                          <div class="col-md-12 d-flex justify-content-between align-items-end ">
-                            <button class="btn btn-sm btn-outline-warning" id="inputName4"  v-if="!update" type="submit" @click="createExpense()">Save</button>
-                            <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateExpense" id="inputName4" placeholder="john doe">Update</button>
-                            <button class="btn btn-sm btn-success" v-if="update" @click="update = false, expense = {amount:0, date:null, memberId:null}" id="inputName4" placeholder="john doe">+</button>
-					        <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
+                            <div>
+                                <button class="btn btn-sm btn-outline-warning" id="inputName4"  v-if="!update" type="submit" @click="createExpense()">Save</button>
+                                <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateExpense" id="inputName4" placeholder="john doe">Update</button>
+                                <button class="btn btn-sm btn-success" v-if="update" @click="update = false, expense = {amount:0, date:null, memberId:null}" id="inputName4" placeholder="john doe">+</button>
+                            </div>
+                            <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                         </div>
                     </div>
                 </div>

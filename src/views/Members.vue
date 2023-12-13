@@ -25,10 +25,12 @@
                             <input type="text" v-model="member.profession"  class="form-control form-control-sm" id="inputName4" placeholder="Tailor">
                         </div>
                          <div class="col-md-12 d-flex align-items-end justify-content-between ">
-                            <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click="createMember()" placeholder="john doe">Save</button>
-                            <button class="btn btn-sm btn-outline-info mx-1" @click="updateMember" v-else id="inputName4"  placeholder="john doe">update</button>
-                            <button class="btn btn-sm btn-success" v-if="update" @click="update = false, member={  name:null, location:null,phone:null,phone_two:null,profession:null}" id="inputName4" placeholder="john doe">+</button>
-					        <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
+                            <div>
+                                <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click="createMember()" placeholder="john doe">Save</button>
+                                <button class="btn btn-sm btn-outline-info mx-1" @click="updateMember" v-else id="inputName4"  placeholder="john doe">update</button>
+                                <button class="btn btn-sm btn-success" v-if="update" @click="update = false, member={  name:null, location:null,phone:null,phone_two:null,profession:null}" id="inputName4" placeholder="john doe">+</button>
+                            </div>
+                            <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                         </div>
                     </div>
                 </div>

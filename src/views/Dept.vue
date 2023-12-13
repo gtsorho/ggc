@@ -28,10 +28,12 @@
                             <input type="text" required v-model="debt.paid" class="form-control form-control-sm" id="inputName4" placeholder="12.5">
                         </div>
                         <div class="col-md-12 d-flex justify-content-between align-items-end m-2">
-                            <button class="btn btn-sm btn-outline-warning" id="inputName4" v-if="!update" @click="createDebt">Save</button>
-                            <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateDebt" id="inputName4" placeholder="john doe">Update</button>
-                            <button class="btn btn-sm btn-success" v-if="update" @click="update = false, debt = {amount:null, date:null, category:null}" id="inputName4" placeholder="john doe">+</button>
-					        <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
+                           <div>
+                                <button class="btn btn-sm btn-outline-warning" id="inputName4" v-if="!update" @click="createDebt">Save</button>
+                                <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateDebt" id="inputName4" placeholder="john doe">Update</button>
+                                <button class="btn btn-sm btn-success" v-if="update" @click="update = false, debt = {amount:null, date:null, category:null}" id="inputName4" placeholder="john doe">+</button>
+                           </div>
+                           <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                         </div>
                     </div>
                 </div>

@@ -95,10 +95,12 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 p-2 d-flex justify-content-between align-items-end ">
-                                    <button class="btn btn-sm btn-outline-warning" v-if="!updateHead" id="inputName4" @click="createLedger()"  placeholder="john doe">Save</button>
-                                    <button class="btn btn-sm btn-outline-info mx-1" @click="updateLedgerHead" v-else id="inputName4"  placeholder="john doe">update</button>
-                                    <button class="btn btn-sm btn-success" v-if="updateHead" @click="updateHead = false, ledgerhead={ title:null, account_name:null, account_no:null, start_bal:null, active:false}" id="inputName4" placeholder="john doe">+</button>
-					                <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
+                                    <div>
+                                        <button class="btn btn-sm btn-outline-warning" v-if="!updateHead" id="inputName4" @click="createLedger()"  placeholder="john doe">Save</button>
+                                        <button class="btn btn-sm btn-outline-info mx-1" @click="updateLedgerHead" v-else id="inputName4"  placeholder="john doe">update</button>
+                                        <button class="btn btn-sm btn-success" v-if="updateHead" @click="updateHead = false, ledgerhead={ title:null, account_name:null, account_no:null, start_bal:null, active:false}" id="inputName4" placeholder="john doe">+</button>
+                                    </div>
+                                    <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                                 </div>
                             </div>
                         </div>

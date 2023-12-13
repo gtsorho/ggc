@@ -26,9 +26,16 @@ module.exports = {
             whereClause.createdAt = { [Op.between]: [startDate, endDate] };
         }
 
+        let activeLedger_head = await db.ledger_head.findOne({
+          where:{active:true},
+        }) 
+        
         let lastEntry = await db.ledger.findOne({
-            where: whereClause,
-            order: [['id', 'DESC']],
+          where: {
+              ledgerHeadId: activeLedger_head.id,
+              ...whereClause,
+          },
+          order: [['id', 'DESC']],
         });
 
         // const searchDebts = await db.debt.findAll({
