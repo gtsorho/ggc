@@ -109,14 +109,14 @@ module.exports = {
                 where:{id:1}
             })
 
-            if(messageOnTithe == 'true' || messageOnTithe){
+            let resMsg  = ''
+
+            if(messageOnTithe.value == 'true' || messageOnTithe.value){
 
                 let body = {
                     recipient: tithes.map(tithe => tithe.member.phone),
                     message: `Hello ${tithes.map(tithe => tithe.member.name.split(' ')[0])}, \n\nYour Receipt TTE0${tithes.map(tithe => tithe.id)} of Tithe Paid: GHS${tithes.map(tithe => tithe.amount.toFixed(2))}.\nDate:${(tithes.map(tithe => new Date(tithe.date).toDateString()))} \n\n Thank you and have a Blessed Week`
-                }
-                let resMsg 
-    
+                }  
                 
                 // send sms****************************************
                 axios.post('https://api.mnotify.com/api/sms/quick?key=tAUkX60KwFyFKzxCv4YZKdGH3', 
