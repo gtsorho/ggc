@@ -94,11 +94,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2 p-2 d-flex align-items-end ">
+                                <div class="col-md-12 p-2 d-flex justify-content-between align-items-end ">
                                     <button class="btn btn-sm btn-outline-warning" v-if="!updateHead" id="inputName4" @click="createLedger()"  placeholder="john doe">Save</button>
                                     <button class="btn btn-sm btn-outline-info mx-1" @click="updateLedgerHead" v-else id="inputName4"  placeholder="john doe">update</button>
                                     <button class="btn btn-sm btn-success" v-if="updateHead" @click="updateHead = false, ledgerhead={ title:null, account_name:null, account_no:null, start_bal:null, active:false}" id="inputName4" placeholder="john doe">+</button>
-					                <p :class="msgColor" class="text-capitalize" style="font-size:13px">{{msg}}</p>
+					                <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                                 </div>
                             </div>
                         </div>
@@ -294,14 +294,17 @@ export default {
             })
         },
         deleteLedgerHead(id){
-            axios.get('http://ggc.pangtresses.com/api/ledgers/ledgerhead/delete/'+ id,
-            { headers:{'Authorization': `Bearer ${this.token}`}})
-            .then(response => {
-                this.getLedgerHeads()
-            })
-            .catch(error =>{
-                console.log(error)
-            })
+            var result = confirm("Do you want to perform this action?");
+            if(result){
+                axios.get('http://ggc.pangtresses.com/api/ledgers/ledgerhead/delete/'+ id,
+                { headers:{'Authorization': `Bearer ${this.token}`}})
+                .then(response => {
+                    this.getLedgerHeads()
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
+            }
         },
 
         deleteSelectedItems() {
@@ -360,7 +363,7 @@ export default {
             })
         },
         alert(data){
-            var result = confirm("Do you want to perform this change?\n No need to save after!");
+            var result = confirm("Do you want to perform this change?\nNo need to save after!");
             if (result) {
                 axios.get('http://ggc.pangtresses.com/api/ledgers/setactive/'+ data.id,
                 { headers:{'Authorization': `Bearer ${this.token}`}})

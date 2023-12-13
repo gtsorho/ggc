@@ -36,11 +36,11 @@
                             <label for="inputName8" class="form-label">Date</label>
                             <input type="date" v-model="record.date"  class="form-control form-control-sm" id="inputName8">
                         </div>
-                         <div class="col-md-2 d-flex align-items-end ">
+                         <div class="col-md-12 d-flex align-items-end justify-content-between">
                             <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click.prevent="createRecord()"  placeholder="john doe">Save</button>
                             <button class="btn btn-sm btn-outline-info mx-1" @click="updateRecord()" v-else id="inputName4"  placeholder="john doe">update</button>
                             <button class="btn btn-sm btn-success" v-if="update" @click="update = false, record={  name:null, location:null,phone:null,phone_two:null,profession:null}" id="inputName4" placeholder="john doe">+</button>
-                            <p :class="msgColor" class="text-capitalize d-block" style="font-size:13px">{{msg}}</p>
+					        <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                         </div>
                     </form>
                 </div>

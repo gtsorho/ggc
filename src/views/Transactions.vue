@@ -46,10 +46,10 @@
                     </div>
                     
                 </div>  
-                <div class=" d-flex justify-content-end">
+                <div class=" d-flex justify-content-between">
                         <button v-if="!update" :class="transactionType ? 'bg-warning' : 'bg-success'" @click="addTransaction"  class="btn  text-light btn-sm rounded-pill px-5 mt-4">{{transactionType ? 'Debit' : 'Credit'}}</button>
                         <button v-else  @click="updateLedger"  class="btn bg-warning text-light btn-sm rounded-pill px-5 mt-4">Update</button>
-					    <p :class="msgColor" class="text-capitalize d-block" style="font-size:13px">{{msg}}</p>
+					    <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                 </div>               
             </div>
         </div>

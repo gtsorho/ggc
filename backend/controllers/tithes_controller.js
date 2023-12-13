@@ -105,7 +105,7 @@ module.exports = {
               },
             });
 
-            let messageOnTithe = await db.setting.fineOne({
+            let messageOnTithe = await db.setting.findOne({
                 where:{id:1}
             })
 

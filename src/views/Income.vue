@@ -19,11 +19,11 @@
                                     <option v-for="(value, i) in category" :key="i"  :value="value">{{value}}</option>
                                 </select>
                             </div>
-                        <div class="col-md-2 d-flex align-items-end ">
+                        <div class="col-md-12 d-flex justify-content-between align-items-end ">
                             <button class="btn btn-sm btn-outline-warning" v-if="!update" @click="createIncome"  type="submit" id="inputName4" placeholder="john doe">Save</button>
                             <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateIncome" id="inputName4" placeholder="john doe">Update</button>
                             <button class="btn btn-sm btn-success" v-if="update" @click="update = false, income = {amount:null, date:null, category:null}" id="inputName4" placeholder="john doe">+</button>
-                            <p :class="msgColor" class="text-capitalize d-block" style="font-size:13px">{{msg}}</p>
+					        <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                         </div>
                     </div>
                 </div>
