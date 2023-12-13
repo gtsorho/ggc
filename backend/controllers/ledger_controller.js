@@ -112,7 +112,7 @@ module.exports = {
     }, 
 
     setActiveHead: async (req, res)=>{
-        await db.ledger_head.update({ active: false });
+        await db.ledger_head.update({ active: false },{ where: {}});
 
         await db.ledger_head.update({ active: true }, {
             where: {
