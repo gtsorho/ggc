@@ -8,6 +8,8 @@ const ledger_head = require('./ledger_head')
 const ledger = require('./ledger')
 const record = require('./record')
 const user = require('./user')
+const setting = require('./setting')
+
 
 
 require('dotenv').config()
@@ -48,6 +50,8 @@ db.ledger_head = ledger_head(sequelize, DataTypes)
 db.ledger = ledger(sequelize, DataTypes)
 db.record = record(sequelize, DataTypes)
 db.user = user(sequelize, DataTypes)
+db.setting = setting(sequelize, DataTypes)
+
 
 
 db.member.hasMany(db.tithe);

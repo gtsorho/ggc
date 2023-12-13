@@ -74,7 +74,7 @@ module.exports = {
   
         const user =  await db.user.update(req.body, {where:{id : req.params.id}});
         
-        res.status(200).send(`Ext Officer with id:452${req.params.id} has been updated`)
+        res.status(200)
     },
 
     

@@ -119,7 +119,6 @@ module.exports = {
               id: req.params.index
             }
         });
-
     },
 
     createLedger_head: async (req, res) => {

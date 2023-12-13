@@ -105,33 +105,40 @@ module.exports = {
               },
             });
 
-            let body = {
-                recipient: tithes.map(tithe => tithe.member.phone),
-                message: `Hello ${tithes.map(tithe => tithe.member.name.split(' ')[0])}, \n\nYour Receipt TTE0${tithes.map(tithe => tithe.id)} of Tithe Paid: GHS${tithes.map(tithe => tithe.amount.toFixed(2))}.\nDate:${(tithes.map(tithe => new Date(tithe.date).toDateString()))} \n\n Thank you and have a Blessed Week`
+            let messageOnTithe = await db.setting.fineOne({
+                where:{id:1}
+            })
+
+            if(messageOnTithe == 'true' || messageOnTithe){
+
+                let body = {
+                    recipient: tithes.map(tithe => tithe.member.phone),
+                    message: `Hello ${tithes.map(tithe => tithe.member.name.split(' ')[0])}, \n\nYour Receipt TTE0${tithes.map(tithe => tithe.id)} of Tithe Paid: GHS${tithes.map(tithe => tithe.amount.toFixed(2))}.\nDate:${(tithes.map(tithe => new Date(tithe.date).toDateString()))} \n\n Thank you and have a Blessed Week`
+                }
+                let resMsg 
+    
+                
+                // send sms****************************************
+                axios.post('https://api.mnotify.com/api/sms/quick?key=tAUkX60KwFyFKzxCv4YZKdGH3', 
+                {
+                    recipient: body.recipient,
+                    sender: 'GGC A/G',
+                    message: body.message,
+                    is_schedule: 'false',
+                    schedule_date: ''
+                })
+                .then(response => {
+                     resMsg =  response.data
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
+                // End send sms****************************************
+
             }
-            let resMsg 
-
-            
-            // send sms****************************************
-            axios.post('https://api.mnotify.com/api/sms/quick?key=tAUkX60KwFyFKzxCv4YZKdGH3', 
-            {
-                recipient: body.recipient,
-                sender: 'GGC A/G',
-                message: body.message,
-                is_schedule: 'false',
-                schedule_date: ''
-            })
-            .then(response => {
-                 resMsg =  response.data
-            })
-            .catch(error =>{
-                console.log(error)
-            })
-            // End send sms****************************************
-
 
             await lc.updateBalance();
-            res.send('tithes merged and ledgers created successfully. ' + resMsg);
+            res.send('created successfully. ' + resMsg);
         } catch (error) {
             res.status(400).send(error.message)
         } 

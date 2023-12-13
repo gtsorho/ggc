@@ -69,7 +69,7 @@
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <form class="row border rounded-1  border-warning needs-validation pb-4" @submit.prevent="createLedger"   >
+                            <div class="row border rounded-1  border-warning needs-validation pb-4"  >
                                 <div class="col-md-12">
                                     <label for="inputName4" class="form-label">Ledger Title</label>
                                     <input type="text" required v-model="ledgerhead.title" class="form-control form-control-sm" id="inputName4" placeholder="GGC_Ledger_2024">
@@ -89,18 +89,18 @@
                                 <div class="col-md-6 d-flex py-4 justify-content-center">
                                     <div class="form-check form-switch mx-auto"  style="font-size: 0.8rem !important;" >
                                         <div class="my-auto">
-                                            <input class="form-check-input" v-model="ledgerhead.active" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                            <input class="form-check-input" :disabled="ledgerhead.active" v-model="ledgerhead.active" @change="alert(ledgerhead)" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                                             <label class="form-check-label" style="width: max-content;" for="flexSwitchCheckDefault">Set as active</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-2 p-2 d-flex align-items-end ">
-                                    <button class="btn btn-sm btn-outline-warning" v-if="!updateHead" id="inputName4" type="submit"  placeholder="john doe">Save</button>
+                                    <button class="btn btn-sm btn-outline-warning" v-if="!updateHead" id="inputName4" @click="createLedger()"  placeholder="john doe">Save</button>
                                     <button class="btn btn-sm btn-outline-info mx-1" @click="updateLedgerHead" v-else id="inputName4"  placeholder="john doe">update</button>
                                     <button class="btn btn-sm btn-success" v-if="updateHead" @click="updateHead = false, ledgerhead={ title:null, account_name:null, account_no:null, start_bal:null, active:false}" id="inputName4" placeholder="john doe">+</button>
 					                <p :class="msgColor" class="text-capitalize" style="font-size:13px">{{msg}}</p>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                             <div class="container-fluid p-3">
                                 <span class="badge rounded-pill text-bg-secondary m-1" v-for="(ledgerhead, i) in ledgerheads" :key="i" > <span style="cursor: pointer"  class="badge text-bg-warning" @click="assignLedgerHead(ledgerhead)">{{ledgerhead.title}}</span> <span style="cursor: pointer"  class="badge text-bg-danger" @click="deleteLedgerHead(ledgerhead.id)">Del</span></span>
@@ -109,14 +109,30 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" disabled type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Settings
+                        <button class="accordion-button collapsed "  type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Default Settings
                         </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
+                            <div class="accordion-body">
+                                <button class="btn btn-sm rounded-pill m-2 bg-next float-end text-light" @click="updateSettings">Save</button>
+                                <div v-for="(setting, i) in settings" :key="i">
+                                    <div class="row mb-3" v-if="setting.datatype == 'string' || setting.datatype == 'number'">
+                                        <label for="inputName4" class="col-sm-2 col-form-label">{{setting.tag}}</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" v-model="settings[i].value" class="form-control form-control-sm" id="inputName5" placeholder="value">
+                                        </div>
+                                    </div>
+                                    <fieldset  class="row mb-3 " v-else>
+                                        <legend class="col-form-label text-capitalize col-sm-4 pt-0">{{setting.tag}}</legend>
+                                        <div class="col-sm-8">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" v-model="settings[i].value" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                            </div>
+                                        </div>
+                                    </fieldset >
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -153,6 +169,7 @@ export default {
             updateHead:false,
             users:[],
             selectedItems: [],
+            settings: [],
             msgColor:null,
             msg:'',
             selectAll: false,
@@ -177,6 +194,7 @@ export default {
         if(this.token){
             this.getLedgerHeads()
             this.getUsers()
+            this.getSettings()
         }
     },
     methods:{
@@ -216,13 +234,12 @@ export default {
                 // console.log(error)
             })
         },
-        createLedger(e){
-            e.preventDefault();
+        createLedger(){
             delete this.ledgerhead.active
             axios.post('http://ggc.pangtresses.com/api/ledgers/ledgerhead', this.ledgerhead,
                 { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
-                this.getUsers()
+                this.getLedgerHeads()
                 })
             .catch(error =>{
                 this.msg = error.response.data
@@ -309,6 +326,29 @@ export default {
                 console.log(error)
             })
         },
+        getSettings(){
+            axios.get('http://ggc.pangtresses.com/api/settings/',
+            { headers:{'Authorization': `Bearer ${this.token}`}})
+            .then(response => {
+                this.settings =  response.data
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        },
+        updateSettings(){
+            const updatePromises = this.settings.map(setting =>
+                axios.post(`http://ggc.pangtresses.com/api/settings/update/${setting.id}`, setting,
+                { headers:{'Authorization': `Bearer ${this.token}`}})
+            );
+            Promise.all(updatePromises)
+            .then(responses => {
+                console.log('successfully', responses);
+            })
+            .catch(error => {
+                console.error('error', error);
+            }); 
+        },
         getLedgerHeads(){
             axios.get('http://ggc.pangtresses.com/api/ledgers/ledgerheads',
             { headers:{'Authorization': `Bearer ${this.token}`}})
@@ -318,6 +358,21 @@ export default {
             .catch(error =>{
                 console.log(error)
             })
+        },
+        alert(data){
+            var result = confirm("Do you want to perform this change?\n No need to save after!");
+            if (result) {
+                axios.get('http://ggc.pangtresses.com/api/ledgers/setactive/'+ data.id,
+                { headers:{'Authorization': `Bearer ${this.token}`}})
+                .then(response => {
+                    this.getLedgerHeads()
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
+            } else {
+                this.getLedgerHeads()
+            }
         },
         getCookie(cname) {
         let name = cname + "=";
@@ -341,7 +396,7 @@ export default {
             }else{
                 this.getUsers()
             }
-        }
+        },
     },
 }
 </script>
