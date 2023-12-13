@@ -13,13 +13,21 @@ module.exports = {
 
 
     getTithes: async(req, res)=>{
+        let activeLedger_head = await db.ledger_head.findOne({
+            where:{active:true}
+        })
+
         let tithes = await db.tithe.findAll({
+            where:{ledgerHeadId:activeLedger_head},
             include:db.member
         })
         res.send(tithes)
     },
 
     create: async (req, res) => {
+        let activeLedger_head = await db.ledger_head.findOne({
+            where:{active:true}
+        })
 
         function validExtOfficer(tithe){
             const schema = Joi.object({
@@ -33,6 +41,7 @@ module.exports = {
         if (validate.error) return res.status(400).send(validate.error.details[0].message)
 
          tithe = {
+            'ledgerHeadId':activeLedger_head.id,
             'memberId': req.body.memberId,
             'amount': req.body.amount,
             'date': req.body.date
@@ -149,9 +158,15 @@ module.exports = {
           return regexDate.test(dateString);
       }
   
+      let activeLedger_head = await db.ledger_head.findOne({
+        where:{active:true}
+      })
+
       const { searchValue, startDate, endDate } = req.body;
   
-      const whereClause = {};
+      const whereClause = {
+        ledgerHeadId: activeLedger_head
+      };
   
       if (searchValue) {
           if (isValidDate(searchValue)) {

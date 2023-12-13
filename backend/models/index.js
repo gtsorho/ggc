@@ -60,6 +60,19 @@ db.tithe.belongsTo(db.member);
 db.ledger_head.hasMany(db.ledger)
 db.ledger.belongsTo(db.ledger_head)
 
+db.ledger_head.hasMany(db.tithe)
+db.ledger_head.hasMany(db.income)
+db.ledger_head.hasMany(db.expense)
+db.ledger_head.hasMany(db.debt)
+db.ledger_head.hasMany(db.record)
+
+
+db.tithe.belongsTo(db.ledger_head)
+db.income.belongsTo(db.ledger_head)
+db.expense.belongsTo(db.ledger_head)
+db.debt.belongsTo(db.ledger_head)
+db.record.belongsTo(db.ledger_head)
+
 
 sequelize.sync({ alter: true,  force: false })
 .then(()=>{

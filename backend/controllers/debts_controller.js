@@ -11,7 +11,12 @@ module.exports = {
 
 
     getDebts: async(req, res)=>{
-        let debts = await db.debt.findAll({})
+        let activeLedger_head = await db.ledger_head.findOne({
+          where:{active:true}
+        })
+        let debts = await db.debt.findAll({
+          where:{ledgerHeadId: activeLedger_head}
+        })
         const result = await db.debt.findOne({
             attributes: [
               [Sequelize.fn('SUM', Sequelize.literal('CASE WHEN merged = true THEN balance ELSE amount END')), 'totalBalance']
@@ -23,7 +28,9 @@ module.exports = {
     },
 
     create: async (req, res) => {
-
+        let activeLedger_head = await db.ledger_head.findOne({
+          where:{active:true}
+        })
         function validExtOfficer(debt){
             const schema = Joi.object({
                 amount:Joi.number().required(),
@@ -40,6 +47,7 @@ module.exports = {
         let balance = req.body.amount - req.body.paid
 
         debt = {
+            'ledgerHeadId':activeLedger_head.id,
             'amount': req.body.amount,
             'creditor': req.body.creditor,
             'due': req.body.due,
@@ -151,11 +159,16 @@ module.exports = {
         function isValidDate(dateString) {
             const regexDate = /^\d{4}-\d{2}-\d{2}$/;
             return regexDate.test(dateString);
-          }
-
+        }
+        
+        let activeLedger_head = await db.ledger_head.findOne({
+            where:{active:true}
+        })
         const {searchValue, startDate, endDate} = req.body
 
-        const whereClause = {};
+        const whereClause = {
+          ledgerHeadId: activeLedger_head
+        };
         
         if (searchValue) {
             if (isValidDate(searchValue)) {

@@ -10,11 +10,21 @@ module.exports = {
 
 
     getRecords: async(req, res)=>{
-        let records = await db.record.findAll({})
+        let activeLedger_head = await db.ledger_head.findOne({
+            where:{active:true}
+        })
+
+        let records = await db.record.findAll({
+            where:{ledgerHeadId:activeLedger_head}
+        })
         res.send(records)
     },
 
     create: async (req, res) => {
+        let activeLedger_head = await db.ledger_head.findOne({
+            where:{active:true}
+        })
+
         function validExtOfficer(record){
             const schema = Joi.object({
                 attendance:Joi.number().allow(null),
@@ -32,6 +42,7 @@ module.exports = {
         if (validate.error) return res.status(400).send(validate.error.details[0].message)
 
          record = {
+            'ledgerHeadId':activeLedger_head.id,
             'attendance': req.body.attendance,
             'vips': req.body.vips,
             'offering': req.body.offering,
@@ -91,6 +102,10 @@ module.exports = {
     },
      // ***********************************************SEARCH
      search: async (req, res) => {
+        let activeLedger_head = await db.ledger_head.findOne({
+            where:{active:true}
+        })
+
         function isValidDate(dateString) {
             const regexDate = /^\d{4}-\d{2}-\d{2}$/;
             return regexDate.test(dateString);
@@ -98,7 +113,9 @@ module.exports = {
 
         const {searchValue, startDate, endDate} = req.body
 
-        const whereClause = {};
+        const whereClause = {
+            ledgerHeadId: activeLedger_head
+        };
         
         if (searchValue) {
             if (isValidDate(searchValue)) {
