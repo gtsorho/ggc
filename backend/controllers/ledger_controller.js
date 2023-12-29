@@ -1,7 +1,7 @@
 const _ = require('lodash')
 const db = require('../models')
 const Joi = require('joi')
-const {Op, Sequelize } = require("sequelize")
+const {Op, Sequelize, where } = require("sequelize")
 require('dotenv').config()
 const path = require('path');
 
@@ -20,14 +20,18 @@ module.exports = {
             where:{ledgerHeadId:activeLedger_head.id}
         })
 
-        
         let lastEntry = await db.ledger.findOne({
+            where:{ledgerHeadId:activeLedger_head.id},
             order: [['id', 'DESC']],
         });
 
         let result = {
-            sumCredits : await db.ledger.sum('credit'),
-            sumDebits : await db.ledger.sum('debit'),
+            sumCredits : await db.ledger.sum('credit',
+            { where:{ledgerHeadId:activeLedger_head.id}}
+            ),
+            sumDebits : await db.ledger.sum('debit',
+               { where:{ledgerHeadId:activeLedger_head.id}}
+            ),
             lastEntryBalance : lastEntry.balance
         }
 
@@ -318,7 +322,8 @@ module.exports = {
             'account_no': transaction.account_no,
             'credit': transaction.credit,
             'debit': transaction.debit,
-            'balance': currentBalance
+            'balance': currentBalance,
+            'table_ref':transaction.hasOwnProperty('table_ref') ? transaction.table_ref : null
         }
 
         ledger = await db.ledger.create(ledger)

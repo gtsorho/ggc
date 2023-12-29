@@ -54,7 +54,8 @@
           <td>{{ transaction.createdAt.split("Z")[0] }}</td>
           <td class="w-25">{{ transaction.description }}</td>
           <td class="text-truncate">{{ transaction.category }}</td>
-          <td>GGC00{{ transaction.id }}</td>
+          <td v-if="transaction.table_ref">{{ transaction.table_ref }}</td>
+          <td v-else>GGC00{{ transaction.id }}</td>
           <td>
             {{
               transaction.payable_dest == null &&

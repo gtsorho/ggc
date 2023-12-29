@@ -81,7 +81,8 @@ module.exports = {
             'due': req.body.due,
             'paid': req.body.paid,
             'creditor': req.body.creditor,
-            'balance':balance
+            'balance':balance,
+            'merged':false
         }
 
         debt = await db.debt.update(debt, {
@@ -102,38 +103,100 @@ module.exports = {
     },
 
     // ***************************************************start
-    merge: async(req, res) =>{
+    // merge: async(req, res) =>{
 
-        try {
-            let debts =  await db.debt.findAll({
-                where:{merged:false}
-            })
+    //     try {
+    //         let debts =  await db.debt.findAll({
+    //             where:{merged:false}
+    //         })
+
+    //         const ledgerPromises = debts.map((debt) => {
+
+    //           let lastLedgerDebt = db.ledger.findOne({
+    //             where:{table_ref:'debt_' + debt.id},
+    //             order: [['createdAt', 'DESC']],
+    //           })
+  
+    //           if (lastLedgerDebt) {
+    //             debt.paid = debt.paid - lastLedgerDebt.paid;
+    //           }
+    //             lc.createLedgerInt(
+    //               {
+    //                   'category': debt.category,
+    //                   'description': debt.category +' to '+ debt.creditor + ' total amount: ' + debt.amount + '. Balance is ' + debt.balance,
+    //                   'receivable_src': null,
+    //                   'payable_dest': debt.creditor,
+    //                   'account_no': '000 000 0000',
+    //                   'credit': 0,
+    //                   'debit': debt.paid,
+    //                   'table_ref':'debt_' + debt.id
+    //               }
+    //             )
+    //           }
+    //         );
         
-            const ledgerPromises = debts.map(debt => lc.createLedgerInt(
-                {
-                    'category': debt.category,
-                    'description': debt.category +' to '+ debt.creditor + ' total amount: ' + debt.amount + '. Balance is ' + debt.balance,
-                    'receivable_src': null,
-                    'payable_dest': debt.creditor,
-                    'account_no': '000 000 0000',
-                    'credit': 0,
-                    'debit': debt.paid,
-                }
-            ));
+    //         await Promise.all(ledgerPromises);
         
-            await Promise.all(ledgerPromises);
-        
-            await db.debt.update({ merged: true }, {
-              where: {
-                id: debts.map(debt => debt.id),
-              },
+    //         await db.debt.update({ merged: true }, {
+    //           where: {
+    //             id: debts.map(debt => debt.id),
+    //           },
+    //         });
+    //         await lc.updateBalance();
+    //         res.send('Debts merged and ledgers created successfully.');
+    //     } catch (error) {
+    //         res.status(400).send(error.message)
+    //     }
+    // },
+    merge: async (req, res) => {
+      try {
+        let debts = await db.debt.findAll({
+          where: { merged: false }
+        });
+    
+        const ledgerPromises = debts.map(async (debt) => {
+          try {
+            let lastLedgerDebt = await db.ledger.findOne({
+              where: { table_ref: 'debt_' + debt.id },
+              order: [['createdAt', 'DESC']]
             });
-            await lc.updateBalance();
-            res.send('Debts merged and ledgers created successfully.');
-        } catch (error) {
-            res.status(400).send(error.message)
-        }
+    
+            if (lastLedgerDebt) {
+              debt.paid = debt.paid - lastLedgerDebt.paid;
+            }
+    
+            await lc.createLedgerInt({
+              'category': debt.category,
+              'description': debt.category + ' to ' + debt.creditor + ' total amount: ' + debt.amount + '. Balance is ' + debt.balance,
+              'receivable_src': null,
+              'payable_dest': debt.creditor,
+              'account_no': '000 000 0000',
+              'credit': 0,
+              'debit': debt.paid,
+              'table_ref': 'debt_' + debt.id
+            });
+    
+            console.log('Ledger entry created for debt:', debt.id);
+          } catch (ledgerError) {
+            console.error('Error creating ledger entry for debt:', debt.id, ledgerError);
+          }
+        });
+    
+        await Promise.all(ledgerPromises);
+    
+        await db.debt.update({ merged: true }, {
+          where: {
+            id: debts.map(debt => debt.id),
+          },
+        });
+    
+        await lc.updateBalance();
+        res.send('Debts merged and ledgers created successfully.');
+      } catch (error) {
+        res.status(400).send(error.message);
+      }
     },
+    
 
     getDebtsWithinNext30Days: async (req, res)=>{
       const currentDate = new Date();

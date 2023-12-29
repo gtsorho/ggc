@@ -85,7 +85,7 @@
             
             <div class="col border rounded-1 border-warning">
                 <LeftPane>
-                    <i class="bi bi-star-half mx-2"></i>Expense Total is GH₵ {{total.toFixed(2)}}<i class="bi bi-star-half mx-2"></i>
+                    <i class="bi bi-star-half mx-2"></i>Expense Total is GH₵ {{parseFloat(total).toFixed(2)}}<i class="bi bi-star-half mx-2"></i>
                 </LeftPane>
             </div>
         </div>

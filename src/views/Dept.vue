@@ -140,7 +140,7 @@ export default {
                 category:null,
                 creditor:null,
                 due:null,
-                paid:null
+                paid:null,
             },
             category:[
                 'dues', 'rent', 'utilities', 'project', 'allowance'

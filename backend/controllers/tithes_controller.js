@@ -171,7 +171,7 @@ module.exports = {
       if (searchValue) {
           if (isValidDate(searchValue)) {
               whereClause[Op.or] = [
-                  { '$tithes.due$': searchValue },
+                  { '$tithes.date$': searchValue },
               ];
           } else {
               whereClause[Op.or] = [

@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
         balance: {
             type: DataTypes.FLOAT,
             allowNull:false,
+        },
+        table_ref: {
+            type: DataTypes.TEXT,
+            allowNull:true,
         }
     })
     return ledger

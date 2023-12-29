@@ -80,7 +80,7 @@
             
             <div class="col-sm-12 col-lg-4 border rounded-1 border-warning">
                 <LeftPane>
-                    <i class="bi bi-star-half mx-2"></i> Total Tithe is GH₵ {{total.toFixed(2)}} and  20% is GH₵{{(total * 0.2).toFixed(2)}}<i class="bi bi-star-half mx-2"></i>
+                    <i class="bi bi-star-half mx-2"></i> Total Tithe is GH₵ {{parseFloat(total).toFixed(2)}} and  20% is GH₵{{(parseFloat(total) * 0.2).toFixed(2)}}<i class="bi bi-star-half mx-2"></i>
                 </LeftPane>
             </div>
         </div>

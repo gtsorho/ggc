@@ -19,7 +19,7 @@
                                     <option v-for="(value, i) in category" :key="i"  :value="value">{{value}}</option>
                                 </select>
                             </div>
-                        <div class="col-md-12 d-flex justify-content-between align-items-end ">
+                        <div class="col-md-12 d-flex justify-content-between align-items-end my-2 ">
                             <div>
                                 <button class="btn btn-sm btn-outline-warning" v-if="!update" @click="createIncome"  type="submit" id="inputName4" placeholder="john doe">Save</button>
                                 <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateIncome" id="inputName4" placeholder="john doe">Update</button>
@@ -60,7 +60,7 @@
                                     </div>
                                 </td>
                                 <td>{{i+1}}</td>
-                                <td>{{income.amount.toFixed(2)}}</td>
+                                <td>{{formattedFloat(income.amount)}}</td>
                                 <td>{{income.category}}</td>
                                 <td>{{new Date(income.date).toDateString()}}</td>
                                 <td>{{new Date(income.createdAt).toLocaleString("en-GB")}}</td>
@@ -81,7 +81,7 @@
             
             <div class="col border rounded-1 border-warning">
                 <LeftPane>
-                    <i class="bi bi-star-half mx-2"></i>Income Total is GH₵ {{total.toFixed(2)}}<i class="bi bi-star-half mx-2"></i>
+                    <i class="bi bi-star-half mx-2" ></i>Income Total is GH₵ {{ formattedFloat(total)}}<i class="bi bi-star-half mx-2"></i>
                 </LeftPane>
             </div>
         </div>
@@ -107,7 +107,7 @@ export default {
             msgColor:null,
             msg:'',
             income:{
-                amount:null,
+                amount:0,
                 date:null,
                 category:null
             },
@@ -242,6 +242,15 @@ export default {
                 console.log(error)
             })
         }, 
+        formattedFloat(incomingValue) {
+            const value = parseFloat(incomingValue);
+
+            if (!isNaN(value)) {
+                return value.toFixed(2);
+            } else {
+                return 'Invalid Amount';
+            }
+        },
         getCookie(cname) {
         let name = cname + "=";
         let ca = document.cookie.split(';');
@@ -258,8 +267,9 @@ export default {
       },
     },
     computed:{
+
         total(){
-            return this.total = this.incomes.reduce((sum, income) => sum + income.amount, 0);
+            return  this.incomes.reduce((sum, income) => sum + income.amount, 0);
         }
     },
     watch:{
