@@ -156,15 +156,15 @@ module.exports = {
     
         const ledgerPromises = debts.map(async (debt) => {
           try {
-            let lastLedgerDebt = await db.ledger.findOne({
+            const lastLedgerDebt = await db.ledger.findOne({
               where: { table_ref: 'debt_' + debt.id },
               order: [['createdAt', 'DESC']]
             });
     
             if (lastLedgerDebt) {
-              debt.paid = debt.paid - lastLedgerDebt.paid;
+              debt.paid = debt.paid - lastLedgerDebt.debit;
             }
-    
+
              lc.createLedgerInt({
               'category': debt.category,
               'description': debt.category + ' to ' + debt.creditor + ' total amount: ' + debt.amount + '. Balance is ' + debt.balance,

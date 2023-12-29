@@ -313,6 +313,7 @@ module.exports = {
             return Promise.reject(new Error('insufficient Balance, try crediting account first \n or reduce amounts' ))
         }
 
+
         ledger = {
             'ledgerHeadId':activeLedger_head.id,
             'category': transaction.category,

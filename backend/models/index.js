@@ -27,10 +27,11 @@ const sequelize = new Sequelize(
 
 // const sequelize = new Sequelize(
 //    'ch_db',
-//    'root',
-//    'Capslock@14',
+//    'clq2aij630fn69sqh642nbirv',
+//    'd5R6SnN5qBXkzbI9RMlqBGrg',
 //    {
-//       host: 'localhost',
+//       host: '5.182.33.208',
+//       port: 9002,
 //       dialect: 'mysql',
 //       logging: false
 //    }
