@@ -165,7 +165,7 @@ module.exports = {
               debt.paid = debt.paid - lastLedgerDebt.paid;
             }
     
-            await lc.createLedgerInt({
+             lc.createLedgerInt({
               'category': debt.category,
               'description': debt.category + ' to ' + debt.creditor + ' total amount: ' + debt.amount + '. Balance is ' + debt.balance,
               'receivable_src': null,
