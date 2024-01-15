@@ -9,6 +9,8 @@ const ledger = require('./ledger')
 const record = require('./record')
 const user = require('./user')
 const setting = require('./setting')
+const event = require('./event')
+
 
 
 
@@ -21,7 +23,7 @@ const sequelize = new Sequelize(
    {
       host: 'clq2aij65000gqh9s9b32denl',
       dialect: 'mysql',
-      logging: true
+      logging: false
    }
 );
 
@@ -52,6 +54,8 @@ db.ledger = ledger(sequelize, DataTypes)
 db.record = record(sequelize, DataTypes)
 db.user = user(sequelize, DataTypes)
 db.setting = setting(sequelize, DataTypes)
+db.event = event(sequelize, DataTypes)
+
 
 
 

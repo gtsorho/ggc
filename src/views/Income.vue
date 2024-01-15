@@ -112,7 +112,7 @@ export default {
                 category:null
             },
             category:[
-                'Offering', 'Tithe', 'Seed', 'Sale'
+                'Offering', 'Tithe', 'Seed', 'Thanksgiving', 'Other'
             ],
             savings:[
                 {

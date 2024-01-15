@@ -10,6 +10,8 @@ import Members from '@/views/Members.vue'
 import Ledger from '@/views/Transactions.vue'
 import Records from '@/views/Record.vue'
 import Settings from '@/views/Settings.vue'
+import Events from '@/views/Event.vue'
+
 
 
 const router = createRouter({
@@ -63,6 +65,11 @@ const router = createRouter({
           path: 'records',
           name: 'records',
           component: Records
+        },
+        {
+          path: 'events',
+          name: 'events',
+          component: Events
         },
         {
           path: 'settings',

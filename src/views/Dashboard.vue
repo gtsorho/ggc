@@ -162,12 +162,12 @@ export default {
             { headers:{'Authorization': `Bearer ${this.token}`}})
           .then(response => {
             this.uppercards[0].amount = response.data.lastEntry.balance.toFixed(2)
-            this.uppercards[1].amount = response.data.totalDebtBalance[0].totalDebtBalance.toFixed(2)
+            var amount = response.data.totalDebtBalance[0].totalDebtBalance
+            this.uppercards[1].amount = amount == '' || amount == null ? 0 : amount.toFixed(2)
             this.uppercards[1].percentage = (response.data.totalDebtBalance[0].totalDebtBalance/(response.data.totalDebtBalance[0].totalDebtBalance + response.data.totalPaid[0].totalPaid)) * 100
             this.uppercards[2].amount = response.data.totalExpensesSum.toFixed(2)
 
             this.reports = response.data
-
           })
           .catch(error =>{
               console.log(error)

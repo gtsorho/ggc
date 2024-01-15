@@ -19,6 +19,7 @@
         <router-link :to="{name:'expenses'}" class="btn nav_btn my-2"  @click="activeBtn = 'Expenses'" :class="{active: activeBtn === 'Expenses' }"><i class="bi bi-cash-coin me-1" ></i><span v-if="sidebarbool">Expenses</span></router-link>
         <router-link :to="{name:'ledgers'}" class="btn nav_btn my-2"  @click="activeBtn = 'Ledger'" :class="{active: activeBtn === 'Ledger' }"><i class="bi bi-file-ruled me-1" ></i><span v-if="sidebarbool">Ledger</span></router-link>
         <router-link :to="{name:'records'}" class="btn nav_btn my-2"  @click="activeBtn = 'Records'" :class="{active: activeBtn === 'Records' }"><i class="bi bi-card-list me-1" ></i><span v-if="sidebarbool">Records</span></router-link>    
+        <router-link :to="{name:'events'}" class="btn nav_btn my-2"  @click="activeBtn = 'Events'" :class="{active: activeBtn === 'Events' }"><i class="bi bi-card-list me-1" ></i><span v-if="sidebarbool">Events</span></router-link>    
     </span>
     </div>
     <div class="mt-auto py-4" style="width:100%">

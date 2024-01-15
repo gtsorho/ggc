@@ -11,6 +11,8 @@ const records = require('./backend/routes/records')
 const users = require('./backend/routes/users')
 const dashboard = require('./backend/routes/dashboard')
 const settings = require('./backend/routes/setting')
+const events = require('./backend/routes/events')
+
 
 
 
@@ -38,6 +40,8 @@ app.use('/api/records', records)
 app.use('/api/users', users)
 app.use('/api/dashboards', dashboard)
 app.use('/api/settings', settings)
+app.use('/api/events', events)
+
 
 
 app.use('/', serveStatic(path.join(__dirname,'/dist')))

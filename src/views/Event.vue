@@ -5,29 +5,28 @@
                 <div class="container ">
                     <div class="row border rounded-1  border-warning needs-validation pb-4" >
                         <div class="col-md-6">
-                            <label for="inputName4" class="form-label">Amount</label>
-                            <input type="text" required v-model="expense.amount" class="form-control form-control-sm" id="inputName4" placeholder="256.00">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputName4" class="form-label">Type of Expense</label>
-                            <select v-model="expense.category" class="form-select form-select-sm" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option v-for="(value, i) in category" :key="i"  :value="value">{{value}}</option>
-                            </select>                        
+                            <label for="inputName4" class="form-label">Event</label>
+                            <input type="text" required v-model="event.subject" class="form-control form-control-sm" id="inputName4" placeholder="Women Ministry week ">
                         </div>
                          <div class="col-md-6">
                             <label for="inputName4" class="form-label">Description</label>
-                            <input type="text" v-model="expense.description" required  class="form-control form-control-sm" id="inputName4" placeholder="lorem ipsum init">
+                            <input type="text" v-model="event.description" required  class="form-control form-control-sm" id="inputName4" placeholder="lorem ipsum init">
                         </div>
-                         <div class="col-md-4">
+                         <div class="col-md-6">
                             <label for="inputName4" class="form-label">Date</label>
-                            <input type="date" v-model="expense.date" required  class="form-control form-control-sm" id="inputName4" >
+                            <VueDatePicker class=" mx-0 mx-lg-0  my-lg-2 my-2 " placeholder="select a range" v-model="event.range" range multi-calendars auto-apply :enable-time-picker="false"/>
+                        </div>                        
+                        <div class="form-check pb-2 col-md-6 d-flex align-items-end">
+                            <input class="form-check-input mb-1 ms-1 me-3" type="checkbox" v-model="event.completed" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                event is completed
+                            </label>
                         </div>
                          <div class="col-md-12 d-flex justify-content-between align-items-end ">
                             <div>
-                                <button class="btn btn-sm btn-outline-warning" id="inputName4"  v-if="!update" type="submit" @click="createExpense()">Save</button>
-                                <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateExpense" id="inputName4" placeholder="john doe">Update</button>
-                                <button class="btn btn-sm btn-success" v-if="update" @click="update = false, expense = {amount:0, date:null, memberId:null}" id="inputName4" placeholder="john doe">+</button>
+                                <button class="btn btn-sm btn-outline-warning" id="inputName4"  v-if="!update" type="submit" @click="createEvent()">Save</button>
+                                <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateEvent" id="inputName4" placeholder="john doe">Update</button>
+                                <button class="btn btn-sm btn-success" v-if="update" @click="update = false, event = {amount:0, date:null, memberId:null}" id="inputName4" placeholder="john doe">+</button>
                             </div>
                             <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                         </div>
@@ -42,14 +41,11 @@
                                     <input class="form-check-input"  type="checkbox" v-model="selectAll" @change="selectAllItems" id="flexCheckDefault">
                                 </th>
                                 <th scope="col">#</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Type Trans</th>
-                                <th scope="col">description</th>
-                                <th scope="col">date</th>
-                                <th scope="col" >
-                                    <button v-if="expenses.filter(expense => expense.merged === false).length > 0"  @click="merge()" class="btn btn-sm rounded-pill p-0 btn-outline-danger"><i class="bi bi-arrow-repeat"></i></button>
-                                    <span v-else ><i class="bi bi-arrow-repeat text-success"></i></span>
-                                </th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                                <th scope="col">Completed</th>
                                 <th scope="col" class=" d-flex justify-content-center ">   
                                     <button class="btn btn-outline-danger btn-sm" v-if="selectAll || selectedItems.length > 0" @click="deleteSelectedItems" ><i class="bi bi-trash3"></i></button>
                                     <i class="bi bi-three-dots" v-else></i>                                 
@@ -57,24 +53,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(expense, i) in expenses" :key="i">
+                            <tr v-for="(event, i) in events" :key="i">
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" v-model="selectedItems" :value="expense.id"  id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" v-model="selectedItems" :value="event.id"  id="flexCheckDefault">
                                 </div>
                                 </td>
                                 <td>{{i +1}}</td>
-                                <td>{{parseFloat(expense.amount).toFixed(2)}}</td>
-                                <td>{{expense.category}}</td>
-                                <td>{{expense.description}}</td>
-                                <td>{{new Date(expense.date).toDateString()}}</td>
+                                <td>{{event.subject}}</td>
+                                <td>{{event.description}}</td>
+                                <td>{{new Date(event.start_date).toDateString()}}</td>
+                                <td>{{new Date(event.end_date).toDateString()}}</td>
                                 <td>
-                                    <i v-if="expense.merged" class="bi bi-check-circle-fill text-success"></i>
+                                    <i v-if="event.completed" class="bi bi-check-circle-fill text-success"></i>
                                     <i v-else class="bi bi-x-circle-fill text-danger" ></i>
                                 </td> 
                                 <td class=" d-flex justify-content-center ">
-                                    <button class="btn-outline-warning btn btn-sm m-1" @click="assignExpense(expense), update = true"><i class="bi bi-pencil-square"></i></button>
-                                    <button class="btn btn-outline-danger btn-sm m-1" @click="deleteItem(expense.id)" ><i class="bi bi-trash3"></i></button>
+                                    <button class="btn-outline-warning btn btn-sm m-1" @click="assignEvent(event), update = true"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-outline-danger btn-sm m-1" @click="deleteItem(event.id)" ><i class="bi bi-trash3"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -83,10 +79,28 @@
                 </div>
             </div>
             
-            <div class="col border rounded-1 border-warning">
-                <LeftPane>
-                    <i class="bi bi-star-half mx-2"></i>Expense Total is GH₵ {{parseFloat(total).toFixed(2)}}<i class="bi bi-star-half mx-2"></i>
-                </LeftPane>
+            <div class="col border rounded-1 p-2  border-danger">
+                    <div class="row g-3 pb-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="inputPassword6" class="col-form-label">Show Events</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="number" id="inputPassword6" @change="getUpcoming()" class="form-control form-control-sm" v-model="noDays" aria-describedby="passwordHelpInline">
+                    </div>
+                    <div class="col-auto">
+                        <span id="passwordHelpInline" class="form-text">
+                        days from today
+                        </span>
+                    </div>
+                    </div>   
+                    <div class=" container overflow-y-auto" style=" max-height:5in">
+                        <div v-for="(event , i) in upcoming" :key="i" class="alert alert-danger shadow" role="alert">
+                            <p class="mb-0 text-capitalize fw-bold">{{event.subject}}</p>
+                            <small class="">{{new Date(event.start_date).toDateString()}} - {{new Date(event.end_date).toDateString()}}</small>
+                        </div>
+                    </div>
+    
+                 
             </div>
         </div>
     </div>
@@ -122,35 +136,42 @@ export default {
     data() {
         return {
             total:0,
+            noDays:30,
             err:'',
             update:false,
             selectedItems: [],
             selectAll: false,
             msgColor:null,
             msg:'',
-            expense:{
-                amount:null,
-                date:null,
+            event:{
+                subject:null,
+                completed:false,
                 description:null,
-                category:null
+                range :[],   
             },
-            expenses:[],
-            category:[
-                'religious', 'school', 'individual', 'financial', 'levy', 'utilities'
-            ],
+            events:[],
+            upcoming:[],
             token:null
         }
     },
      mounted(){
         this.token = this.getCookie('token')
-        if(this.token) this.getExpenses()
+        if(this.token) this.getEvents()
     },
     methods:{
-        createExpense(){
-            axios.post('http://ggc.pangtresses.com/api/expenses/', this.expense,
+        createEvent(){
+            let data = {
+                subject:this.event.subject,
+                completed:this.event.completed,
+                description:this.event.description,
+                start_date : this.event.range[0],
+                end_date : this.event.range[1]
+            }
+
+            axios.post('http://ggc.pangtresses.com/api/events/', data,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
-                this.getExpenses()
+                this.getEvents()
                 })
             .catch(error =>{
                 this.msg = error.response.data
@@ -162,23 +183,29 @@ export default {
                 // console.log(error)
             })
         },
-        merge(){
-            axios.get('http://ggc.pangtresses.com/api/expenses/merge/',
+        getUpcoming(){
+            axios.get('http://ggc.pangtresses.com/api/events/upcoming/'+ this.noDays,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
-                this.getExpenses()
+                this.upcoming = response.data
+                console.log(this.upcoming)
             })
             .catch(error =>{
                 this.err = error.response.data
                 this.$refs.errModal.click()
             })
         },
-        getExpenses(){
-            axios.get('http://ggc.pangtresses.com/api/expenses/',
+        getEvents(){
+            this.getUpcoming()
+            axios.get('http://ggc.pangtresses.com/api/events/',
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
-                this.expenses =  response.data
-                this.total = this.expenses.reduce((sum, expense) => sum + expense.amount, 0);
+                this.events = response.data.map(event => {
+                    return {
+                        ...event,
+                        range: [event.start_date, event.end_date]
+                    };
+                });
             })
             .catch(error =>{
                 console.log(error)
@@ -186,19 +213,27 @@ export default {
         },
         selectAllItems() {
             if (this.selectAll) {
-                this.selectedItems = this.expenses.map(expense => expense.id);
+                this.selectedItems = this.events.map(event => event.id);
             } else {
                 this.selectedItems = [];
             }
         },
-        assignExpense(data){
-            this.expense = data
+        assignEvent(data){
+            this.event = data
         },
-        updateExpense(){
-            axios.post('http://ggc.pangtresses.com/api/expenses/update/' + this.expense.id,  this.expense,
+        updateEvent(){
+            let data = {
+                subject:this.event.subject,
+                completed:this.event.completed,
+                description:this.event.description,
+                start_date : this.event.range[0],
+                end_date : this.event.range[1]
+            }
+
+            axios.post('http://ggc.pangtresses.com/api/events/update/' + this.event.id, data,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
-                this.getExpenses()
+                this.getEvents()
                 })
             .catch(error =>{
                 this.msg = error.response.data
@@ -207,12 +242,11 @@ export default {
 					this.msg = ''
 					this.msgColor = null
 				}, 5000);
-                // console.log(error)
             })
         },
         deleteSelectedItems() {
             const deletePromises = this.selectedItems.map(id =>
-                axios.delete(`http://ggc.pangtresses.com/api/expenses/delete/${id}`,
+                axios.delete(`http://ggc.pangtresses.com/api/events/delete/${id}`,
                  { headers:{'Authorization': `Bearer ${this.token}`}})
             );
             Promise.all(deletePromises)
@@ -224,10 +258,10 @@ export default {
             }); 
         },
          deleteItem(id){
-            axios.get('http://ggc.pangtresses.com/api/expenses/delete/'+ id,
+            axios.get('http://ggc.pangtresses.com/api/events/delete/'+ id,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
-                this.getExpenses()
+                this.getEvents()
             })
             .catch(error =>{
                 console.log(error)
@@ -251,10 +285,9 @@ export default {
     watch:{
         navData(newData, oldData){
         if(newData || newData != null){
-            this.expenses = newData
-            this.total = this.expenses.reduce((sum, expense) => sum + expense.amount, 0);
+            this.events = newData
         }else{
-            this.getExpenses()
+            this.getEvents()
         }
         }
     },

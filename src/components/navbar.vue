@@ -15,11 +15,11 @@
                 <label class="form-check-label" style="width: max-content;" for="flexSwitchCheckDefault">by date</label>
               </div>
               
-            <VueDatePicker v-model="searchVal.date"  v-if="searchByDate && switchVal" placeholder="pick a date" class="mx-4" text-input auto-apply :enable-time-picker="false" @update:model-value="search"/>
+            <VueDatePicker v-model="searchVal.date"  v-if="searchByDate && switchVal" placeholder="pick a date" class="mx-4" text-input auto-apply :enable-time-picker="false" @update:model-value="search()"/>
             <div>
               <input type="search"  v-if="searchByText" placeholder="Search here" style="font-size: 0.8rem !important;" class="search-field px-3 py-1 my-2 " v-model="searchVal.searchValue"  @keyup="search()"/>
             </div>
-            <VueDatePicker class=" mx-0 mx-lg-4 my-lg-2 my-2 " v-if="searchByRange && !switchVal" placeholder="select a range" v-model="searchVal.range" range multi-calendars auto-apply :enable-time-picker="false" @update:model-value="search"/>
+            <VueDatePicker class=" mx-0 mx-lg-4 my-lg-2 my-2 " v-if="searchByRange && !switchVal" placeholder="select a range" v-model="searchVal.range" range multi-calendars auto-apply :enable-time-picker="false" @update:model-value="search()"/>
         
         </form>
 
@@ -184,6 +184,14 @@ export default {
             .catch(error => {
               console.error('Error:', error);
             });
+            break;  
+            case 'events':
+            this.searchFx('events').then(response => {
+              this.$emit('searchData', response.data)
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
             break;                    
           default:
             console.log('Invalid option.');
@@ -210,6 +218,11 @@ export default {
               this.searchByDate = false
               this.searchByText =false
               this.searchByRange = true
+            break; 
+          case 'events':
+              this.searchByDate = false
+              this.searchByText = true
+              this.searchByRange = true
             break;              
           default:
             this.searchByDate = true
@@ -232,7 +245,6 @@ export default {
             endDate:this.searchVal.range ? this.simplifyDate(this.searchVal.range[1]) : null,
           }
         }
-        console.log(data)
         return await axios.post(`http://ggc.pangtresses.com/api/${routeName}/search`, data, 
         { headers:{'Authorization': `Bearer ${this.token}`}})
       },
