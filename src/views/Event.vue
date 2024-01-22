@@ -80,9 +80,9 @@
             </div>
             
             <div class="col border rounded-1 p-2  border-danger">
-                    <div class="row g-3 pb-2 align-items-center">
+                <div class="row g-3 pb-2 align-items-center">
                     <div class="col-auto">
-                        <label for="inputPassword6" class="col-form-label">Show Events</label>
+                        <label for="inputPassword6" class="col-form-label">Now to</label>
                     </div>
                     <div class="col-3">
                         <input type="number" id="inputPassword6" @change="getUpcoming()" class="form-control form-control-sm" v-model="noDays" aria-describedby="passwordHelpInline">
@@ -92,15 +92,27 @@
                         days from today
                         </span>
                     </div>
-                    </div>   
-                    <div class=" container overflow-y-auto" style=" max-height:5in">
-                        <div v-for="(event , i) in upcoming" :key="i" class="alert alert-danger shadow" role="alert">
-                            <p class="mb-0 text-capitalize fw-bold">{{event.subject}}</p>
-                            <small class="">{{new Date(event.start_date).toDateString()}} - {{new Date(event.end_date).toDateString()}}</small>
-                        </div>
+                </div>  
+                <ul class="nav nav-pills nav-fill d-flex px-3 justify-content-center my-1" style="font-size:13px">
+                    <li class="nav-item"  @click="tab = true">
+                        <a class="nav-link " :class="tab ? 'active' : ''" href="#">Upcoming</a>
+                    </li>
+                    <li class="nav-item" @click="tab = false">
+                        <a class="nav-link  " :class="!tab ? 'active' : ''"  href="#">Recurring</a>
+                    </li>
+                </ul> 
+                <div class=" container overflow-y-auto" style=" max-height:5in" v-if="tab">
+                    <div v-for="(event , i) in upcoming" :key="i" class="alert alert-danger shadow" role="alert">
+                        <p class="mb-0 text-capitalize fw-bold">{{event.subject}}</p>
+                        <small class="">{{new Date(event.start_date).toDateString()}} - {{new Date(event.end_date).toDateString()}}</small>
                     </div>
-    
-                 
+                </div>
+                <div class=" container overflow-y-auto" style=" max-height:5in" v-else>
+                    <div v-for="(event , i) in recurring" :key="i" class="alert alert-warning shadow" role="alert">
+                        <p class="mb-0 text-capitalize fw-bold">{{event.subject}}</p>
+                        <small class="">{{event.description}}</small>
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
@@ -135,6 +147,7 @@ export default {
     },
     data() {
         return {
+            tab:true,
             total:0,
             noDays:30,
             err:'',
@@ -151,6 +164,7 @@ export default {
             },
             events:[],
             upcoming:[],
+            recurring:[],
             token:null
         }
     },
@@ -187,8 +201,8 @@ export default {
             axios.get('http://ggc.pangtresses.com/api/events/upcoming/'+ this.noDays,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
-                this.upcoming = response.data
-                console.log(this.upcoming)
+                this.upcoming = response.data[0]
+                this.recurring = response.data[1]
             })
             .catch(error =>{
                 this.err = error.response.data
@@ -294,5 +308,12 @@ export default {
 }
 </script>
 <style >
+    .nav-item .active{
+        background: #ffc412 !important;
+        color: #fff !important;
+    }
+    .nav-item a{
+        color: #000 !important;
+    }
     
 </style>

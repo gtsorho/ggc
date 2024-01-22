@@ -10,7 +10,11 @@ module.exports = {
 
 
     getEvents: async(req, res)=>{
-        let events = await db.event.findAll({})
+        let events = await db.event.findAll({
+            where:{
+                completed:false
+            },
+        })
         res.send(events)
     },
 
@@ -24,9 +28,15 @@ module.exports = {
                     [Op.between]:[today, futureDate]
                 },
                 completed:false
+            },
+            order: [['start_date', 'DESC']]
+        })
+        let recurring = await db.event.findAll({
+            where:{
+                recurring:true
             }
         })
-        res.send(events)
+        res.send([events, recurring])
     },
 
     create: async (req, res) => {

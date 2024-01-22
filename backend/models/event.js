@@ -21,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull:false,
         },
+        recurring: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue:false
+        },
     })
     return event
 }
