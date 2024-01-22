@@ -14,6 +14,7 @@ module.exports = {
             where:{
                 completed:false
             },
+            order: [['start_date', 'ASC']]
         })
         res.send(events)
     },
@@ -27,9 +28,10 @@ module.exports = {
                 start_date:{
                     [Op.between]:[today, futureDate]
                 },
-                completed:false
+                completed:false,
+                recurring:false
             },
-            order: [['start_date', 'DESC']]
+            order: [['start_date', 'ASC']]
         })
         let recurring = await db.event.findAll({
             where:{
@@ -99,17 +101,13 @@ module.exports = {
     },
      // ***********************************************SEARCH
      search: async (req, res) => {
-        function isValidDate(dateString) {
-            const regexDate = /^\d{4}-\d{2}-\d{2}$/;
-            return regexDate.test(dateString);
-        }
-        
+       
         const {searchValue, startDate, endDate} = req.body
-        
+        const whereClause = {};
+
         if (searchValue) {
             whereClause[Op.or] = [
                 { subject: { [Op.like]: `%${searchValue}%` } },
-                // Add more columns as needed
             ];
           }
 
