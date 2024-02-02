@@ -35,7 +35,8 @@ module.exports = {
         })
         let recurring = await db.event.findAll({
             where:{
-                recurring:true
+                recurring:true,
+                completed: false
             }
         })
         res.send([events, recurring])
@@ -50,7 +51,8 @@ module.exports = {
                 description:Joi.string().required(),
                 completed: Joi.boolean().allow(null),
                 start_date: Joi.date().required(),
-                end_date: Joi.date().required()                
+                end_date: Joi.date().required(),
+                recurring: Joi.boolean().required()                
 
             })
             return schema.validate(event)
@@ -64,6 +66,7 @@ module.exports = {
             'completed': req.body.completed,
             'start_date': req.body.start_date,
             'end_date': req.body.end_date,
+            'recurring': req.body.recurring,
         }
 
         event = await db.event.create(event)
@@ -78,7 +81,8 @@ module.exports = {
                 description:Joi.string().allow(null),
                 completed: Joi.boolean().allow(null),
                 start_date: Joi.date().allow(null),
-                end_date: Joi.date().allow(null)    
+                end_date: Joi.date().allow(null),
+                recurring: Joi.boolean().allow(null)                
             }).unknown(true)
             return schema.validate(event)
         }

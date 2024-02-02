@@ -16,10 +16,16 @@
                             <label for="inputName4" class="form-label">Date</label>
                             <VueDatePicker class=" mx-0 mx-lg-0  my-lg-2 my-2 " placeholder="select a range" v-model="event.range" range multi-calendars auto-apply :enable-time-picker="false"/>
                         </div>                        
-                        <div class="form-check pb-2 col-md-6 d-flex align-items-end">
+                        <div class="form-check pb-2 col-md-3 d-flex align-items-end">
                             <input class="form-check-input mb-1 ms-1 me-3" type="checkbox" v-model="event.completed" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
-                                event is completed
+                                Completed
+                            </label>
+                        </div>
+                        <div class="form-check pb-2 col-md-3 d-flex align-items-end">
+                            <input class="form-check-input mb-1 ms-1 me-3" type="checkbox" v-model="event.recurring" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Recurring
                             </label>
                         </div>
                          <div class="col-md-12 d-flex justify-content-between align-items-end ">
@@ -159,6 +165,7 @@ export default {
             event:{
                 subject:null,
                 completed:false,
+                recurring:false,
                 description:null,
                 range :[],   
             },
@@ -179,7 +186,8 @@ export default {
                 completed:this.event.completed,
                 description:this.event.description,
                 start_date : this.event.range[0],
-                end_date : this.event.range[1]
+                end_date : this.event.range[1],
+                recurring : this.event.recurring
             }
 
             axios.post('http://ggc.pangtresses.com/api/events/', data,
@@ -241,7 +249,8 @@ export default {
                 completed:this.event.completed,
                 description:this.event.description,
                 start_date : this.event.range[0],
-                end_date : this.event.range[1]
+                end_date : this.event.range[1],
+                recurring : this.event.recurring
             }
 
             axios.post('http://ggc.pangtresses.com/api/events/update/' + this.event.id, data,
@@ -298,11 +307,11 @@ export default {
     },
     watch:{
         navData(newData, oldData){
-        if(newData || newData != null){
-            this.events = newData
-        }else{
-            this.getEvents()
-        }
+            if(newData || newData != null){
+                this.events = newData
+            }else{
+                this.getEvents()
+            }
         }
     },
 }

@@ -19,7 +19,18 @@ module.exports = (sequelize, DataTypes) => {
         profession: {
             type: DataTypes.STRING,
             allowNull:true,
+        },
+        dob: {
+            type: DataTypes.DATE,
+            allowNull:true,
+        },
+        status: {
+            type: DataTypes.ENUM('single', 'married', 'child'),
+            allowNull:false,
+            defaultValue:'single'
         }
+
+        
     })
     return member
 }

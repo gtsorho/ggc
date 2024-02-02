@@ -11,7 +11,7 @@ import Ledger from '@/views/Transactions.vue'
 import Records from '@/views/Record.vue'
 import Settings from '@/views/Settings.vue'
 import Events from '@/views/Event.vue'
-
+import NewMember from '@/views/NewMember.vue'
 
 
 const router = createRouter({
@@ -22,6 +22,12 @@ const router = createRouter({
       name: 'login',
       component: HomeView
     },
+        {
+          path: '/newmember',
+          name: 'newmember',
+          component: NewMember
+        },
+
     {
       path: '/main',
       name: 'main',
