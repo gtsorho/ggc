@@ -14,37 +14,37 @@
                         </div>
                         <div class="col-md-6 my-2">
                             <label for="inputName4" class="form-label">Marital Status</label>
-                            <select v-model="member.status" class="form-select form-select-sm rounded-pill" aria-label="Default select example">
+                            <select v-model="member.status" class="form-select form-select-sm " aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option v-for="(value, i) in statuses" :key="i"  :value="value">{{value}}</option>
                             </select>                        
                         </div>
                         <div class="col-md-6 my-2">
                             <label for="inputName4" class="form-label">Department</label>
-                            <select v-model="member.department" class="form-select form-select-sm rounded-pill" aria-label="Default select example">
+                            <select v-model="member.department" class="form-select form-select-sm " aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option v-for="(value, i) in departments" :key="i"  :value="value">{{value}}</option>
                             </select>                        
                         </div>
                         <div class="col-md-6 my-2">
                             <label for="inputName4" class="form-label">Ministry</label>
-                            <select v-model="member.ministry" class="form-select form-select-sm rounded-pill" aria-label="Default select example">
+                            <select v-model="member.ministry" class="form-select form-select-sm " aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option v-for="(value, i) in ministries" :key="i"  :value="value">{{value}}</option>
                             </select>                        
                         </div>
                         <div class="col-md-6 my-2">
                             <label for="inputName4" class="form-label">Cell</label>
-                            <select v-model="member.cell" class="form-select form-select-sm rounded-pill" aria-label="Default select example">
+                            <select v-model="member.cell" class="form-select form-select-sm " aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option v-for="(value, i) in cells" :key="i"  :value="value">{{value}}</option>
                             </select>                        
                         </div>
                             <div class="col-md-4 my-2">
                             <label for="inputName4" class="form-label">Date of Birth</label>
-                            <input type="date" v-model="member.dob" required  class="form-control  rounded-pill px-3 form-control-sm" id="inputName4" >
+                            <input type="date" v-model="member.dob" required  class="form-control   px-3 form-control-sm" id="inputName4" >
                         </div>
-                         <div class="col-md-6">
+                         <div class="col-md-6 my-2">
                             <label for="inputName4" class="form-label">Phone 01</label>
                             <input type="text" required v-model="member.phone" class="form-control form-control-sm" id="inputName4" placeholder="024 xxx xxxx">
                         </div>
@@ -52,7 +52,7 @@
                             <label for="inputName4" class="form-label">Phone 02</label>
                             <input type="text" v-model="member.phone_two"  class="form-control form-control-sm" id="inputName4" placeholder="023 xxx xxxx">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <label for="inputName4" class="form-label">Profession</label>
                             <input type="text" v-model="member.profession"  class="form-control form-control-sm" id="inputName4" placeholder="Tailor">
                         </div>
@@ -76,10 +76,15 @@
                                 </th>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">DOB</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Phone 01</th>
                                 <th scope="col">Phone 02</th>
                                 <th scope="col">Profession</th>
                                 <th scope="col">Location</th>
+                                <th scope="col">Ministry</th>
+                                <th scope="col">Dept</th>
+                                <th scope="col">Cell</th>
                                 <th scope="col" class="d-flex justify-content-center ">   
                                     <button class="btn btn-outline-danger btn-sm" v-if="selectAll || selectedItems.length > 0" @click="deleteSelectedItems" ><i class="bi bi-trash3"></i></button>
                                     <i class="bi bi-three-dots" v-else></i>                                 
@@ -95,10 +100,16 @@
                                 </td>
                                 <td>{{i +1}}</td>
                                 <td>{{member.name}}</td>
+                                <td>{{member.dob}}</td>
+                                <td>{{member.status}}</td>
                                 <td>{{member.phone}}</td>
                                 <td>{{member.phone_two}}</td>
                                 <td>{{member.profession}}</td>  
                                 <td>{{member.location}}</td>  
+                                <td>{{member.ministry}}</td>  
+                                <td>{{member.department}}</td>  
+                                <td>{{member.cell}}</td>  
+
                                 <td class="d-flex justify-content-center ">
                                     <button class="btn-outline-warning btn btn-sm m-1" @click="assignMember(member)"><i class="bi bi-pencil-square"></i></button>
                                     <button class="btn btn-outline-danger btn-sm m-1" @click="deleteMember(member.id)" ><i class="bi bi-trash3"></i></button>
