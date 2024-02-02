@@ -17,6 +17,27 @@
                     <option v-for="(value, i) in statuses" :key="i"  :value="value">{{value}}</option>
                 </select>                        
             </div>
+            <div class="col-md-6 my-2">
+                <label for="inputName4" class="form-label">Department  <span class="text-danger fw-bold fs-6">!</span></label>
+                <select v-model="member.department" class="form-select form-select-sm rounded-pill" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option v-for="(value, i) in departments" :key="i"  :value="value">{{value}}</option>
+                </select>                        
+            </div>
+            <div class="col-md-6 my-2">
+                <label for="inputName4" class="form-label">Ministry  <span class="text-danger fw-bold fs-6">!</span></label>
+                <select v-model="member.ministry" class="form-select form-select-sm rounded-pill" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option v-for="(value, i) in ministries" :key="i"  :value="value">{{value}}</option>
+                </select>                        
+            </div>
+            <div class="col-md-6 my-2">
+                <label for="inputName4" class="form-label">Cell  <span class="text-danger fw-bold fs-6">!</span></label>
+                <select v-model="member.cell" class="form-select form-select-sm rounded-pill" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option v-for="(value, i) in cells" :key="i"  :value="value">{{value}}</option>
+                </select>                        
+            </div>
                 <div class="col-md-4 my-2">
                 <label for="inputName4" class="form-label">Date of Birth <span class="text-danger fw-bold fs-6">!</span></label>
                 <input type="date" v-model="member.dob" required  class="form-control  rounded-pill px-3 form-control-sm" id="inputName4" >
@@ -54,6 +75,9 @@ export default {
     data() {
         return {
             statuses:['single','married','child'],
+            cells:['open house','glory chapel','porters', 'kodesh', 'sureReigners','N/A'],
+            departments:['protocol','music', 'N/A'],
+            ministries:['women','men','youth','children'],
             msgColor:null,
 		    msg:'',
             member:{
@@ -63,7 +87,10 @@ export default {
                 phone_two:null,
                 profession:null,
                 dob:null,
-                status:'single'
+                status:'single',
+                ministry:'youth',
+                department:'N/A',
+                cell:'N/A'
             },
             token:null
         }

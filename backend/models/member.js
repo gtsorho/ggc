@@ -28,9 +28,22 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.ENUM('single', 'married', 'child'),
             allowNull:false,
             defaultValue:'single'
-        }
-
-        
+        },
+        ministry: {
+            type: DataTypes.STRING,
+            allowNull:false,
+            defaultValue:'youth'
+        },
+        department: {
+            type: DataTypes.STRING,
+            allowNull:false,
+            defaultValue:'N/A'
+        },
+        cell: {
+            type: DataTypes.STRING,
+            allowNull:false,
+            defaultValue:'N/A'
+        },
     })
     return member
 }

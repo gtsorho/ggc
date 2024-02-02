@@ -23,6 +23,9 @@ module.exports = {
                 phone_two: Joi.string().allow(null),
                 dob: Joi.date().required(),
                 status: Joi.string().valid('married', 'single','child'),
+                ministry: Joi.string().required(),
+                department: Joi.string().required(),
+                cell: Joi.string().required(),
                 location: Joi.string().required(),
                 profession: Joi.string().allow(null)
             })
@@ -39,6 +42,10 @@ module.exports = {
             'status': req.body.status,
             'location': req.body.location,
             'profession': req.body.profession,
+            'ministry': req.body.ministry,
+            'cell': req.body.cell,
+            'department': req.body.department,
+
         }
 
         member = await db.member.create(member)
@@ -54,6 +61,9 @@ module.exports = {
                 phone_two: Joi.string().allow(null),
                 dob: Joi.date.allow(null),
                 status: Joi.string().valid('married', 'single','child'),
+                ministry: Joi.string().allow(null),
+                department: Joi.string().allow(null),
+                cell: Joi.string().allow(null),
                 location: Joi.string().allow(null),
                 profession: Joi.string().allow(null)
             }).unknown(true)
@@ -70,6 +80,9 @@ module.exports = {
             'status': req.body.status,
             'location': req.body.location,
             'profession': req.body.profession,
+            'ministry': req.body.ministry,
+            'cell': req.body.cell,
+            'department': req.body.department
         }
 
         member = await db.member.update(member, {
@@ -99,6 +112,9 @@ module.exports = {
                 { phone_two: { [Op.like]: `%${searchValue}%` } },
                 { dob: { [Op.like]: `%${searchValue}%` } },
                 { status: { [Op.like]: `%${searchValue}%` } },
+                { cell: { [Op.like]: `%${searchValue}%` } },
+                { department: { [Op.like]: `%${searchValue}%` } },
+                { ministry: { [Op.like]: `%${searchValue}%` } },
                 { location: { [Op.like]: `%${searchValue}%` } },
                 { profession: { [Op.like]: `%${searchValue}%` } },
                 // Add more columns as needed
