@@ -18,7 +18,7 @@
                             <label for="inputName4" class="form-label">Date</label>
                             <input type="date" v-model="tithe.date" required  class="form-control form-control-sm" id="inputName4" placeholder="john doe">
                         </div>
-                         <div class="col-md-12 d-flex align-items-end justify-content-between  ">
+                         <div class="col-md-12 d-flex align-items-end justify-content-between my-2 ">
                             <div>
                                 <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" @click="createTithe" type="submit" >Save</button>
                                 <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateTithe" id="inputName4" placeholder="john doe">Update</button>

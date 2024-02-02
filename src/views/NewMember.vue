@@ -3,35 +3,35 @@
         <label for="member" class="fw-bolder py-3">New Membership</label>
         <div class="row border rounded-1 shadow  border-warning needs-validation pb-4 p-4"   >
             <div class="col-md-12 my-2">
-                <label for="inputName4" class="form-label">Name</label>
+                <label for="inputName4" class="form-label">Name <span class="text-danger fw-bold fs-6">!</span></label>
                 <input type="text" required v-model="member.name"  class="form-control  rounded-pill px-3 form-control-sm" id="inputName4" placeholder="john doe">
             </div>
             <div class="col-md-6 my-2">
-                <label for="inputName4" class="form-label">Location</label>
+                <label for="inputName4" class="form-label">Location <span class="text-danger fw-bold fs-6">!</span> </label>
                 <input type="text" required v-model="member.location" class="form-control  rounded-pill px-3 form-control-sm" id="inputName4" placeholder="Klagon Near ....">
             </div>
             <div class="col-md-6 my-2">
-            <label for="inputName4" class="form-label">Marital Status</label>
+                <label for="inputName4" class="form-label">Marital Status <span class="text-danger fw-bold fs-6">!</span></label>
                 <select v-model="member.status" class="form-select form-select-sm rounded-pill" aria-label="Default select example">
                     <option selected>Open this select menu</option>
                     <option v-for="(value, i) in statuses" :key="i"  :value="value">{{value}}</option>
                 </select>                        
             </div>
                 <div class="col-md-4 my-2">
-                <label for="inputName4" class="form-label">Date of Birth</label>
+                <label for="inputName4" class="form-label">Date of Birth <span class="text-danger fw-bold fs-6">!</span></label>
                 <input type="date" v-model="member.dob" required  class="form-control  rounded-pill px-3 form-control-sm" id="inputName4" >
             </div>
             <div class="col-md-6 offset-md-3"></div>
             <div class="col-md-6 my-2">
-                <label for="inputName4" class="form-label">Phone 01</label>
+                <label for="inputName4" class="form-label">Phone 01 <span class="text-danger fw-bold fs-6">!</span></label>
                 <input type="text" required v-model="member.phone" class="form-control  rounded-pill px-3 form-control-sm" id="inputName4" placeholder="024 xxx xxxx">
             </div>
             <div class="col-md-6 my-2">
-                <label for="inputName4" class="form-label">Phone 02</label>
+                <label for="inputName4" class="form-label">Phone 02 <span class="text-primary">(optional)</span> </label>
                 <input type="text" v-model="member.phone_two"  class="form-control  rounded-pill px-3 form-control-sm" id="inputName4" placeholder="023 xxx xxxx">
             </div>
             <div class="col-md-8 my-2">
-                <label for="inputName4" class="form-label">Profession</label>
+                <label for="inputName4" class="form-label">Profession <span class="text-danger fw-bold fs-6">!</span></label>
                 <input type="text" v-model="member.profession"  class="form-control  rounded-pill px-3 form-control-sm" id="inputName4" placeholder="Officer">
             </div>
             <div class="col-md-12 my-2 d-flex align-items-end justify-content-between ">

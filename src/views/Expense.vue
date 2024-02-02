@@ -24,7 +24,7 @@
                             <input type="date" v-model="expense.date" required  class="form-control form-control-sm" id="inputName4" >
                         </div>
                          <div class="col-md-12 d-flex justify-content-between align-items-end ">
-                            <div>
+                            <div class="my-2">
                                 <button class="btn btn-sm btn-outline-warning" id="inputName4"  v-if="!update" type="submit" @click="createExpense()">Save</button>
                                 <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateExpense" id="inputName4" placeholder="john doe">Update</button>
                                 <button class="btn btn-sm btn-success" v-if="update" @click="update = false, expense = {amount:0, date:null, memberId:null}" id="inputName4" placeholder="john doe">+</button>

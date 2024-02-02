@@ -37,7 +37,7 @@
                             <input type="date" v-model="record.date"  class="form-control form-control-sm" id="inputName8">
                         </div>
                          <div class="col-md-12 d-flex align-items-end justify-content-between">
-                            <div>
+                            <div class="my-2">
                                 <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click.prevent="createRecord()"  placeholder="john doe">Save</button>
                                 <button class="btn btn-sm btn-outline-info mx-1" @click="updateRecord()" v-else id="inputName4"  placeholder="john doe">update</button>
                                 <button class="btn btn-sm btn-success" v-if="update" @click="update = false, record={  name:null, location:null,phone:null,phone_two:null,profession:null}" id="inputName4" placeholder="john doe">+</button>

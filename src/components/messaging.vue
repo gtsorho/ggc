@@ -88,7 +88,6 @@ export default {
 
         },
         setTemplate(){
-            console.log(this.selectedTemplate)
             this.message = this.selectedTemplate.content.replace(/\[fname\]/g, '[name]');
         },
         getCookie(cname) {

@@ -12,6 +12,17 @@
                             <label for="inputName4" class="form-label">Location</label>
                             <input type="text" required v-model="member.location" class="form-control form-control-sm" id="inputName4" placeholder="Klagon Near ....">
                         </div>
+                        <div class="col-md-6 my-2">
+                            <label for="inputName4" class="form-label">Marital Status</label>
+                            <select v-model="member.status" class="form-select form-select-sm rounded-pill" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option v-for="(value, i) in statuses" :key="i"  :value="value">{{value}}</option>
+                            </select>                        
+                        </div>
+                            <div class="col-md-4 my-2">
+                            <label for="inputName4" class="form-label">Date of Birth</label>
+                            <input type="date" v-model="member.dob" required  class="form-control  rounded-pill px-3 form-control-sm" id="inputName4" >
+                        </div>
                          <div class="col-md-6">
                             <label for="inputName4" class="form-label">Phone 01</label>
                             <input type="text" required v-model="member.phone" class="form-control form-control-sm" id="inputName4" placeholder="024 xxx xxxx">
@@ -24,7 +35,7 @@
                             <label for="inputName4" class="form-label">Profession</label>
                             <input type="text" v-model="member.profession"  class="form-control form-control-sm" id="inputName4" placeholder="Tailor">
                         </div>
-                         <div class="col-md-12 d-flex align-items-end justify-content-between ">
+                         <div class="col-md-12 d-flex align-items-end justify-content-between my-2 ">
                             <div>
                                 <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click="createMember()" placeholder="john doe">Save</button>
                                 <button class="btn btn-sm btn-outline-info mx-1" @click="updateMember" v-else id="inputName4"  placeholder="john doe">update</button>
@@ -97,6 +108,7 @@ export default {
   },
     data() {
         return {
+            statuses:['single','married','child'],
             update:false,
             members:[],
             selectedItems: [],
@@ -108,7 +120,9 @@ export default {
                 location:null,
                 phone:null,
                 phone_two:null,
-                profession:null
+                profession:null,
+                dob:null,
+                status:'single'
             },
             token:null
         }
