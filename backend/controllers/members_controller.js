@@ -59,7 +59,7 @@ module.exports = {
                 name:Joi.string().allow(null),
                 phone:Joi.string().allow(null),
                 phone_two: Joi.string().allow(null),
-                dob: Joi.date.allow(null),
+                dob: Joi.date().allow(null),
                 status: Joi.string().valid('married', 'single','child'),
                 ministry: Joi.string().allow(null),
                 department: Joi.string().allow(null),
