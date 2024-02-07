@@ -164,7 +164,7 @@ export default {
             }
         },
         createDebt(){
-            axios.post('http://ggc.pangtresses.com/api/debts/', this.debt,
+            axios.post('http://admin.greatergraceag.com/api/debts/', this.debt,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getDebts()
@@ -180,7 +180,7 @@ export default {
             })
         },
         merge(){
-            axios.get('http://ggc.pangtresses.com/api/debts/merge/',
+            axios.get('http://admin.greatergraceag.com/api/debts/merge/',
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getDebts()
@@ -191,7 +191,7 @@ export default {
             })
         },
         getDebts(){
-            axios.get('http://ggc.pangtresses.com/api/debts/',
+            axios.get('http://admin.greatergraceag.com/api/debts/',
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.debts =  response.data[0]
@@ -201,7 +201,7 @@ export default {
             })
         },
         updateDebt(){
-            axios.post('http://ggc.pangtresses.com/api/debts/update/' + this.debt.id,  this.debt,
+            axios.post('http://admin.greatergraceag.com/api/debts/update/' + this.debt.id,  this.debt,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getDebts()
@@ -218,7 +218,7 @@ export default {
         },
         deleteSelectedItems() {
             const deletePromises = this.selectedItems.map(id =>
-                axios.delete(`http://ggc.pangtresses.com/api/debts/delete/${id}`,
+                axios.delete(`http://admin.greatergraceag.com/api/debts/delete/${id}`,
                  { headers:{'Authorization': `Bearer ${this.token}`}})
             );
             Promise.all(deletePromises)
@@ -230,7 +230,7 @@ export default {
             }); 
         },
          deleteItem(id){
-            axios.get('http://ggc.pangtresses.com/api/debts/delete/'+ id,
+            axios.get('http://admin.greatergraceag.com/api/debts/delete/'+ id,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 console.log(response.data)
