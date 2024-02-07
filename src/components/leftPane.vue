@@ -67,7 +67,7 @@ export default {
     },
     methods:{
         getTransactions(){
-            axios.get('http://ggc.pangtresses.com/api/ledgers/ledgers/'+ 0,
+            axios.get('http://admin.greatergraceag.com/api/ledgers/ledgers/'+ 0,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then((res)=>{
                 this.transactions = res.data
@@ -76,7 +76,7 @@ export default {
             })
         },
         getDebts(){
-            axios.get('http://ggc.pangtresses.com/api/debts/',
+            axios.get('http://admin.greatergraceag.com/api/debts/',
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.debts =  response.data

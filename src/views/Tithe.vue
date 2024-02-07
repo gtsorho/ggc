@@ -133,7 +133,7 @@ export default {
             this.tithe = data
         },
         createTithe(){
-            axios.post('http://ggc.pangtresses.com/api/tithes/', this.tithe,
+            axios.post('http://admin.greatergraceag.com/api/tithes/', this.tithe,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getTithes()
@@ -149,7 +149,7 @@ export default {
             })
         },
         merge(){
-            axios.get('http://ggc.pangtresses.com/api/tithes/merge/',
+            axios.get('http://admin.greatergraceag.com/api/tithes/merge/',
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getTithes()
@@ -159,7 +159,7 @@ export default {
             })
         },
         getTithes(){
-            axios.get('http://ggc.pangtresses.com/api/tithes/',
+            axios.get('http://admin.greatergraceag.com/api/tithes/',
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.tithes =  response.data
@@ -169,7 +169,7 @@ export default {
             })
         },
         getMembers(){
-            axios.get('http://ggc.pangtresses.com/api/members/',
+            axios.get('http://admin.greatergraceag.com/api/members/',
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.members =  response.data
@@ -180,7 +180,7 @@ export default {
         },
         updateTithe(){
             console.log(this.tithe)
-            axios.post('http://ggc.pangtresses.com/api/tithes/update/' + this.tithe.id,  this.tithe,
+            axios.post('http://admin.greatergraceag.com/api/tithes/update/' + this.tithe.id,  this.tithe,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getTithes()
@@ -197,7 +197,7 @@ export default {
         },
         deleteSelectedItems() {
             const deletePromises = this.selectedItems.map(id =>
-                axios.delete(`http://ggc.pangtresses.com/api/tithes/delete/${id}`,
+                axios.delete(`http://admin.greatergraceag.com/api/tithes/delete/${id}`,
                 { headers:{'Authorization': `Bearer ${this.token}`}})
             );
             Promise.all(deletePromises)
@@ -209,7 +209,7 @@ export default {
             }); 
         },
          deleteItem(id){
-            axios.get('http://ggc.pangtresses.com/api/tithes/delete/'+ id,
+            axios.get('http://admin.greatergraceag.com/api/tithes/delete/'+ id,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getTithes()

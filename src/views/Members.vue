@@ -67,24 +67,25 @@
                     </div>
                 </div>
                 <div>
-                    <div class="table-responsive my-3"  style="max-height:4in">
-                        <table class="table table-hover " style="font-size:14px">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="width: 20px;"> 
-                                    <input class="form-check-input"  type="checkbox" v-model="selectAll" @change="selectAllItems" id="flexCheckDefault">
-                                </th>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">DOB</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Phone 01</th>
-                                <th scope="col">Phone 02</th>
-                                <th scope="col">Profession</th>
-                                <th scope="col">Location</th>
-                                <th scope="col">Ministry</th>
-                                <th scope="col">Dept</th>
-                                <th scope="col">Cell</th>
+                    <div class="table-responsive my-3 shadow border border-light border-5 "  style="max-height:4in">
+                            <span style="font-size:12px !important" class="float-end pe-4 py-3">{{selectedItems.length}} items selected</span>
+                            <table class="table table-hover table-striped" style="font-size:14px">
+                            <thead class="sticky-top top-0">
+                                <tr class="">
+                                    <th scope="col" style="width: 20px;"> 
+                                        <input class="form-check-input"  type="checkbox" v-model="selectAll" @change="selectAllItems" id="flexCheckDefault">
+                                    </th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">DOB</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Phone 01</th>
+                                    <th scope="col">Phone 02</th>
+                                    <th scope="col">Profession</th>
+                                    <th scope="col">Location</th>
+                                    <th scope="col">Ministry</th>
+                                    <th scope="col">Dept</th>
+                                    <th scope="col">Cell</th>
                                 <th scope="col" class="d-flex justify-content-center ">   
                                     <button class="btn btn-outline-danger btn-sm" v-if="selectAll || selectedItems.length > 0" @click="deleteSelectedItems" ><i class="bi bi-trash3"></i></button>
                                     <i class="bi bi-three-dots" v-else></i>                                 
@@ -121,7 +122,7 @@
                 </div>
             </div>
             
-            <div class="col border rounded-1 border-warning">
+            <div class="col col-12 border rounded-1 border-warning py-3">
                 <Messaging :selectedMembers="selectedItems"/>
             </div>
         </div>

@@ -147,7 +147,7 @@ export default {
       this.getTransactions();
     },
     getTransactions() {
-        axios.get("http://ggc.pangtresses.com/api/ledgers/ledgers/" + (this.pagination.currentPage - 1) * this.pagination.limit,
+        axios.get("http://admin.greatergraceag.com/api/ledgers/ledgers/" + (this.pagination.currentPage - 1) * this.pagination.limit,
         { headers:{'Authorization': `Bearer ${this.token}`}})
         .then((res) => {
             this.ledger = res.data[0];
@@ -158,7 +158,7 @@ export default {
           console.log(err);
         })
 
-        axios.get("http://ggc.pangtresses.com/api/ledgers/active",
+        axios.get("http://admin.greatergraceag.com/api/ledgers/active",
         { headers:{'Authorization': `Bearer ${this.token}`}})
         .then((res) => {
           this.ledgerhead = res.data;
@@ -192,7 +192,7 @@ export default {
     },
     deleteItem(id){
       console.log(id)
-      axios.get('http://ggc.pangtresses.com/api/ledgers/delete/'+ id,
+      axios.get('http://admin.greatergraceag.com/api/ledgers/delete/'+ id,
       { headers:{'Authorization': `Bearer ${this.token}`}})
       .then(response => {
           this.getTransactions()

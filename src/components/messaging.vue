@@ -65,7 +65,7 @@ export default {
                 message: this.message.replace(/\[name\]/g, member.name.split(' ')[0]),
             };
 
-            return axios.post('http://ggc.pangtresses.com/api/members/send', data,
+            return axios.post('http://admin.greatergraceag.com/api/members/send', data,
                 {
                     headers: {
                         'Accept': 'application/json',

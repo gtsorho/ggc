@@ -221,7 +221,7 @@ export default {
         createUser(e){
             e.preventDefault();
             
-            axios.post('http://ggc.pangtresses.com/api/users/', this.user,
+            axios.post('http://admin.greatergraceag.com/api/users/', this.user,
                 { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getUsers()
@@ -238,7 +238,7 @@ export default {
         },
         createLedger(){
             delete this.ledgerhead.active
-            axios.post('http://ggc.pangtresses.com/api/ledgers/ledgerhead', this.ledgerhead,
+            axios.post('http://admin.greatergraceag.com/api/ledgers/ledgerhead', this.ledgerhead,
                 { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getLedgerHeads()
@@ -254,7 +254,7 @@ export default {
             })
         },
         updateUser(){
-            axios.post('http://ggc.pangtresses.com/api/users/update/'+ this.user.id, this.user,
+            axios.post('http://admin.greatergraceag.com/api/users/update/'+ this.user.id, this.user,
                       { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getUsers()
@@ -270,7 +270,7 @@ export default {
             })
         },
         deleteUser(id){
-            axios.get('http://ggc.pangtresses.com/api/users/delete/'+ id,
+            axios.get('http://admin.greatergraceag.com/api/users/delete/'+ id,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getUsers()
@@ -280,7 +280,7 @@ export default {
             })
         },
         updateLedgerHead(){
-            axios.post('http://ggc.pangtresses.com/api/ledgers/ledgerhead/update/'+ this.ledgerhead.id, this.ledgerhead,
+            axios.post('http://admin.greatergraceag.com/api/ledgers/ledgerhead/update/'+ this.ledgerhead.id, this.ledgerhead,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getLedgerHeads()
@@ -298,7 +298,7 @@ export default {
         deleteLedgerHead(id){
             var result = confirm("Do you want to perform this action?");
             if(result){
-                axios.get('http://ggc.pangtresses.com/api/ledgers/ledgerhead/delete/'+ id,
+                axios.get('http://admin.greatergraceag.com/api/ledgers/ledgerhead/delete/'+ id,
                 { headers:{'Authorization': `Bearer ${this.token}`}})
                 .then(response => {
                     this.getLedgerHeads()
@@ -311,7 +311,7 @@ export default {
 
         deleteSelectedItems() {
             const deletePromises = this.selectedItems.map(user =>
-                axios.delete(`http://ggc.pangtresses.com/api/users/delete/${user.id}`,           
+                axios.delete(`http://admin.greatergraceag.com/api/users/delete/${user.id}`,           
                 { headers:{'Authorization': `Bearer ${this.token}`}}));
             Promise.all(deletePromises)
             .then(responses => {
@@ -322,7 +322,7 @@ export default {
             });
         },
         getUsers(){
-            axios.get('http://ggc.pangtresses.com/api/users/',
+            axios.get('http://admin.greatergraceag.com/api/users/',
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.users =  response.data
@@ -332,7 +332,7 @@ export default {
             })
         },
         getSettings(){
-            axios.get('http://ggc.pangtresses.com/api/settings/',
+            axios.get('http://admin.greatergraceag.com/api/settings/',
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.settings =  response.data
@@ -343,7 +343,7 @@ export default {
         },
         updateSettings(){
             const updatePromises = this.settings.map(setting =>
-                axios.post(`http://ggc.pangtresses.com/api/settings/update/${setting.id}`, setting,
+                axios.post(`http://admin.greatergraceag.com/api/settings/update/${setting.id}`, setting,
                 { headers:{'Authorization': `Bearer ${this.token}`}})
             );
             Promise.all(updatePromises)
@@ -355,7 +355,7 @@ export default {
             }); 
         },
         getLedgerHeads(){
-            axios.get('http://ggc.pangtresses.com/api/ledgers/ledgerheads',
+            axios.get('http://admin.greatergraceag.com/api/ledgers/ledgerheads',
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.ledgerheads =  response.data
@@ -367,7 +367,7 @@ export default {
         alert(data){
             var result = confirm("Do you want to perform this change?\nNo need to save after!");
             if (result) {
-                axios.get('http://ggc.pangtresses.com/api/ledgers/setactive/'+ data.id,
+                axios.get('http://admin.greatergraceag.com/api/ledgers/setactive/'+ data.id,
                 { headers:{'Authorization': `Bearer ${this.token}`}})
                 .then(response => {
                     this.getLedgerHeads()

@@ -107,7 +107,7 @@ export default {
     },
     methods:{
         getAuth(){
-            axios.get('http://ggc.pangtresses.com/api/users/auth',
+            axios.get('http://admin.greatergraceag.com/api/users/auth',
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
               this.user = response.data
@@ -117,7 +117,7 @@ export default {
             })
         },
         getDebtsNotify(){
-          axios.get('http://ggc.pangtresses.com/api/debts/notify',
+          axios.get('http://admin.greatergraceag.com/api/debts/notify',
             { headers:{'Authorization': `Bearer ${this.token}`}})
           .then(response => {
             this.dueDebts = response.data
@@ -245,7 +245,7 @@ export default {
             endDate:this.searchVal.range ? this.simplifyDate(this.searchVal.range[1]) : null,
           }
         }
-        return await axios.post(`http://ggc.pangtresses.com/api/${routeName}/search`, data, 
+        return await axios.post(`http://admin.greatergraceag.com/api/${routeName}/search`, data, 
         { headers:{'Authorization': `Bearer ${this.token}`}})
       },
       simplifyDate(originalDate) {

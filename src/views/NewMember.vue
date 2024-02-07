@@ -100,7 +100,7 @@ export default {
     },
     methods:{
         createMember(){            
-            axios.post('http://ggc.pangtresses.com/api/members/', this.member,
+            axios.post('http://admin.greatergraceag.com/api/members/', this.member,
                       { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.msg = 'Saved Successfully'
