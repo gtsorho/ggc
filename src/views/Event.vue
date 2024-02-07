@@ -190,7 +190,7 @@ export default {
                 recurring : this.event.recurring
             }
 
-            axios.post('http://ggc.pangtresses.com/api/events/', data,
+            axios.post('http://admin.greatergraceag.com/api/events/', data,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getEvents()
@@ -206,7 +206,7 @@ export default {
             })
         },
         getUpcoming(){
-            axios.get('http://ggc.pangtresses.com/api/events/upcoming/'+ this.noDays,
+            axios.get('http://admin.greatergraceag.com/api/events/upcoming/'+ this.noDays,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.upcoming = response.data[0]
@@ -219,7 +219,7 @@ export default {
         },
         getEvents(){
             this.getUpcoming()
-            axios.get('http://ggc.pangtresses.com/api/events/',
+            axios.get('http://admin.greatergraceag.com/api/events/',
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.events = response.data.map(event => {
@@ -253,7 +253,7 @@ export default {
                 recurring : this.event.recurring
             }
 
-            axios.post('http://ggc.pangtresses.com/api/events/update/' + this.event.id, data,
+            axios.post('http://admin.greatergraceag.com/api/events/update/' + this.event.id, data,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getEvents()
@@ -269,7 +269,7 @@ export default {
         },
         deleteSelectedItems() {
             const deletePromises = this.selectedItems.map(id =>
-                axios.delete(`http://ggc.pangtresses.com/api/events/delete/${id}`,
+                axios.delete(`http://admin.greatergraceag.com/api/events/delete/${id}`,
                  { headers:{'Authorization': `Bearer ${this.token}`}})
             );
             Promise.all(deletePromises)
@@ -281,7 +281,7 @@ export default {
             }); 
         },
          deleteItem(id){
-            axios.get('http://ggc.pangtresses.com/api/events/delete/'+ id,
+            axios.get('http://admin.greatergraceag.com/api/events/delete/'+ id,
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getEvents()
