@@ -186,7 +186,7 @@ export default {
             return this.typeofDept[index]
         },
         createMember(){            
-            axios.post('http://ggc.pangtresses.com/api/members/', this.member,
+            axios.post('http://admin.greatergraceag.com/api/members/', this.member,
                       { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getMembers()
@@ -202,7 +202,7 @@ export default {
             })
         },
         updateMember(){
-            axios.post('http://ggc.pangtresses.com/api/members/update/'+this.member.id, this.member,
+            axios.post('http://admin.greatergraceag.com/api/members/update/'+this.member.id, this.member,
                       { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getMembers()
@@ -218,7 +218,7 @@ export default {
             })
         },
         deleteMember(id){
-            axios.get('http://ggc.pangtresses.com/api/members/delete/'+ id,
+            axios.get('http://admin.greatergraceag.com/api/members/delete/'+ id,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getMembers()
@@ -229,7 +229,7 @@ export default {
         }, 
         deleteSelectedItems() {
             const deletePromises = this.selectedItems.map(member =>
-                axios.delete(`http://ggc.pangtresses.com/api/members/delete/${member.id}`,           
+                axios.delete(`http://admin.greatergraceag.com/api/members/delete/${member.id}`,           
                 { headers:{'Authorization': `Bearer ${this.token}`}}));
             Promise.all(deletePromises)
             .then(responses => {
@@ -240,7 +240,7 @@ export default {
             });
         },
         getMembers(){
-            axios.get('http://ggc.pangtresses.com/api/members/',
+            axios.get('http://admin.greatergraceag.com/api/members/',
                       { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.members =  response.data
