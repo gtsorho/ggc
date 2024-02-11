@@ -142,8 +142,8 @@ export default {
     data() {
         return {
             statuses:['single','married','child'],
-            cells:['open house','glory chapel','porters', 'kodesh','N/A'],
-            departments:['protocol','music', 'N/A'],
+            cells:['PortaCos','gloryHouse','trueZion', 'sureReigners','N/A'],
+            departments:['protocol','music','sunday School','media','theatre', 'N/A'],
             ministries:['women','men','youth','children'],
             update:false,
             members:[],
