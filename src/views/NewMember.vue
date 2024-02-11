@@ -74,7 +74,7 @@ export default {
   },
     data() {
         return {
-            statuses:['single','married','child'],
+            statuses:['single','married','minor'],
             cells:['PortaCos','gloryHouse','trueZion', 'sureReigners','N/A'],
             departments:['protocol','music','sunday School','media','theatre', 'N/A'],
             ministries:['women','men','youth','children'],
