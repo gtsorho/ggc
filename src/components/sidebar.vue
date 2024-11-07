@@ -19,16 +19,16 @@
         <router-link :to="{name:'expenses'}" class="btn nav_btn my-2"  @click="activeBtn = 'Expenses'" :class="{active: activeBtn === 'Expenses' }"><i class="bi bi-cash-coin me-1" ></i><span v-if="sidebarbool">Expenses</span></router-link>
         <router-link :to="{name:'ledgers'}" class="btn nav_btn my-2"  @click="activeBtn = 'Ledger'" :class="{active: activeBtn === 'Ledger' }"><i class="bi bi-file-ruled me-1" ></i><span v-if="sidebarbool">Ledger</span></router-link>
         <router-link :to="{name:'records'}" class="btn nav_btn my-2"  @click="activeBtn = 'Records'" :class="{active: activeBtn === 'Records' }"><i class="bi bi-card-list me-1" ></i><span v-if="sidebarbool">Records</span></router-link>    
-        <router-link :to="{name:'events'}" class="btn nav_btn my-2"  @click="activeBtn = 'Events'" :class="{active: activeBtn === 'Events' }"><i class="bi bi-card-list me-1" ></i><span v-if="sidebarbool">Events</span></router-link>    
+        <router-link :to="{name:'events'}" class="btn nav_btn my-2"  @click="activeBtn = 'Events'" :class="{active: activeBtn === 'Events' }"><i class="bi bi-calendar2-event me-1" ></i><span v-if="sidebarbool">Events</span></router-link>    
     </span>
     </div>
     <div class="mt-auto py-4" style="width:100%">
-      <ul class="list-group list-group-flush">
+      <ul class="list-group list-group-flush" :class="sidebarbool ? 'px-4': ''">
         <li class="list-group-item border-0 p-0 my-2">
-          <router-link :to="{name:'settings'}" class="btn btn-sm btn-outline-warning justify-content-center d-flex justify-content-md-start " ><i class="bi bi-gear" ></i><span v-if="sidebarbool">Settings</span> </router-link>
+          <router-link :to="{name:'settings'}" class="btn btn-sm setBtn justify-content-center d-flex" ><i class="bi bi-gear mx-2" ></i><span v-if="sidebarbool">Settings</span> </router-link>
         </li>
         <li class="list-group-item border-0 p-0 my-0">
-          <router-link :to="{name:'login'}" class=" btn btn-sm btn-outline-danger text-danger justify-content-center d-flex justify-content-md-start" @click="logout()" ><i class="bi bi-power"></i><span v-if="sidebarbool">Logout</span> </router-link>
+          <router-link :to="{name:'login'}" class=" btn btn-sm logout justify-content-center d-flex" @click="logout()" ><i class="bi bi-power mx-2"></i><span v-if="sidebarbool">Logout</span> </router-link>
         </li>
       </ul>
     </div> 
@@ -161,8 +161,9 @@ export default {
   z-index: 1;
   top: 0;
   left: 0;
-  /* background-image: linear-gradient(198deg, #000000, #c2213d) !important; */
-  border-right: 3px solid rgb(201, 201, 201);
+  /* background: #000633; */
+  background-image: linear-gradient(198deg, #01001c, #000633) !important;
+  /* border-right: 3px solid rgb(201, 201, 201); */
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 10px;
@@ -208,5 +209,21 @@ export default {
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+.logout{
+  border:#5c0000 2px solid;
+}
+.logout:hover{
+  border:#5c0000 2px solid;
+  background-color:#5c0000 ;
+}
+
+.setBtn{
+  border:#aa9901 2px solid;
+}
+.setBtn:hover{
+  border:#aa9901 2px solid;
+  background-color:#aa9901 ;
 }
 </style>

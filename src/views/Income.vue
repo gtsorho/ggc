@@ -1,9 +1,9 @@
 <template >
-    <div class="container  ">
-        <div class="row  p-2">
-            <div class=" col-md-12 col-lg-8 mx-2 ">
+    <div class="container ps-0 mx-0 ">
+        <div class="row py-3">
+            <div class=" col-md-12 col-lg-8 ">
                 <div class="container ">
-                    <div class="row border rounded-1  border-warning needs-validation pb-4" >
+                    <div class="row cardBg needs-validation py-2" >
                         <div class="col-md-3">
                             <label for="inputName4" class="form-label">Amount</label>
                             <input type="text" required v-model="income.amount" class="form-control form-control-sm" id="inputName4" placeholder="500.00">
@@ -21,18 +21,18 @@
                             </div>
                         <div class="col-md-12 d-flex justify-content-between align-items-end my-2 ">
                             <div>
-                                <button class="btn btn-sm btn-outline-warning" v-if="!update" @click="createIncome"  type="submit" id="inputName4" placeholder="john doe">Save</button>
-                                <button class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateIncome" id="inputName4" placeholder="john doe">Update</button>
-                                <button class="btn btn-sm btn-success" v-if="update" @click="update = false, income = {amount:null, date:null, category:null}" id="inputName4" placeholder="john doe">+</button>
+                                <button style="width:1in" class="btn btn-sm btn-outline-warning" v-if="!update" @click="createIncome"  type="submit" id="inputName4" placeholder="john doe">Save</button>
+                                <button style="width:1in" class="btn btn-sm btn-outline-primary mx-1" v-if="update" @click="updateIncome" id="inputName4" placeholder="john doe">Update</button>
+                                <button style="width:1in" class="btn btn-sm btn-success" v-if="update" @click="update = false, income = {amount:null, date:null, category:null}" id="inputName4" placeholder="john doe">+</button>
                             </div>
                             <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <div class="table-responsive my-3"  style="max-height:4in">
-                        <table class="table table-hover " style="font-size:14px">
-                        <thead>
+                    <div class="table-responsive mt-3 cardBg px-2"  style="max-height:70vh">
+                        <table class="table-hover w-100" style="font-size:14px">
+                        <thead class="sticky-top top-0">
                             <tr>
                                 <th scope="col" style="width: 20px;"> 
                                     <input class="form-check-input"  type="checkbox" v-model="selectAll" @change="selectAllItems" id="flexCheckDefault">
@@ -79,7 +79,7 @@
                 </div>
             </div>
             
-            <div class="col border rounded-1 border-warning">
+            <div class="col cardBg">
                 <LeftPane>
                     <i class="bi bi-star-half mx-2" ></i>Income Total is GH₵ {{ formattedFloat(total)}}<i class="bi bi-star-half mx-2"></i>
                 </LeftPane>
@@ -284,5 +284,4 @@ export default {
 }
 </script>
 <style >
-    
 </style>

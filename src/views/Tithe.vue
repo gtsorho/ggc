@@ -1,9 +1,9 @@
 <template >
-    <div class="container  ">
-        <div class="row  p-2">
+    <div class="container ps-0 mx-0 ">
+        <div class="row  py-2">
             <div class=" col-12 col-lg-8">
                 <div class="container ">
-                    <div class="row border rounded-1  border-warning needs-validation pb-4">
+                    <div class="row cardBg needs-validation py-2">
                         <div class="col-md-4">
                             <label for="inputName4" class="form-label">Member</label>
                             <select class="form-select form-select-sm" v-model="tithe.memberId" aria-label="Default select example">
@@ -29,8 +29,8 @@
                     </div>
                 </div>
                 <div>
-                    <div class="table-responsive my-3"  style="max-height:4in">
-                        <table class="table table-hover " style="font-size:14px">
+                    <div class="table-responsive mt-3 cardBg px-2"  style="max-height:70vh">
+                        <table class="w-100 table-hover" style="font-size:14px">
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 20px;"> 
@@ -78,7 +78,7 @@
                 </div>
             </div>
             
-            <div class="col-sm-12 col-lg-4 border rounded-1 border-warning">
+            <div class="col-sm-12 col-lg-4 cardBg">
                 <LeftPane>
                     <i class="bi bi-star-half mx-2"></i> Total Tithe is GH₵ {{parseFloat(total).toFixed(2)}} and  20% is GH₵{{(parseFloat(total) * 0.2).toFixed(2)}}<i class="bi bi-star-half mx-2"></i>
                 </LeftPane>

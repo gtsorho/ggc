@@ -29,11 +29,7 @@ module.exports = {
             const schema = Joi.object({
                 attendance:Joi.number().allow(null),
                 vips:Joi.number().allow(null),
-                offering: Joi.number().allow(null),
-                tithe: Joi.number().allow(null),
-                seed: Joi.number().allow(null),
-                welfare: Joi.number().allow(null),
-                thanksgiving: Joi.number().allow(null),
+                income: Joi.number().allow(null),
                 date: Joi.date().required(null)                
             })
             return schema.validate(record)
@@ -45,11 +41,7 @@ module.exports = {
             'ledgerHeadId':activeLedger_head.id,
             'attendance': req.body.attendance,
             'vips': req.body.vips,
-            'offering': req.body.offering,
-            'tithe': req.body.tithe,
-            'seed': req.body.seed,
-            'welfare': req.body.welfare,
-            'thanksgiving': req.body.thanksgiving,
+            'income': req.body.income,
             'date': req.body.date,
         }
 
@@ -63,11 +55,7 @@ module.exports = {
             const schema = Joi.object({
                 attendance:Joi.number().allow(null),
                 vips:Joi.number().allow(null),
-                offering: Joi.number().allow(null),
-                tithe: Joi.number().allow(null),
-                seed: Joi.number().allow(null),
-                welfare: Joi.number().allow(null),
-                thanksgiving: Joi.number().allow(null),
+                income: Joi.number().allow(null),
                 date: Joi.date().required(null) 
             }).unknown(true)
             return schema.validate(record)
@@ -78,11 +66,7 @@ module.exports = {
          record = {
             'attendance': req.body.attendance,
             'vips': req.body.vips,
-            'offering': req.body.offering,
-            'tithe': req.body.tithe,
-            'seed': req.body.seed,
-            'welfare': req.body.welfare,
-            'thanksgiving': req.body.thanksgiving,
+            'income': req.body.income,
             'date': req.body.date,
         }
 

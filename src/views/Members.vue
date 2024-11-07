@@ -1,9 +1,14 @@
 <template >
-    <div class="container  ">
+    <div class="container  mt-4">
+        <div class=" container d-flex justify-content-start">     
+        <ul class="pagination border-1 border-secondary">
+            <li class="page-item mx-0" v-for="(item, index) in menuItems" :key="index" :class="{ active: activeIndex === index }" ><a class="page-link" href="#" @click="setActive(index)"><i class="fa fa-home "></i> <small>{{ item }}</small>  </a></li>
+        </ul> 
+    </div>
         <div class="row  p-2">
             <div class=" col mx-2 ">
-                <div class="container ">
-                    <div class="row border rounded-1  border-warning needs-validation pb-4"   >
+                <div class="container " v-if="activeIndex == 0">
+                    <div class="row shadow-lg needs-validation cardBg py-4" >
                         <div class="col-md-6">
                             <label for="inputName4" class="form-label">Name</label>
                             <input type="text" required v-model="member.name"  class="form-control form-control-sm" id="inputName4" placeholder="john doe">
@@ -58,18 +63,18 @@
                         </div>
                          <div class="col-md-12 d-flex align-items-end justify-content-between my-2 ">
                             <div>
-                                <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click="createMember()" placeholder="john doe">Save</button>
-                                <button class="btn btn-sm btn-outline-info mx-1" @click="updateMember" v-else id="inputName4"  placeholder="john doe">update</button>
-                                <button class="btn btn-sm btn-success" v-if="update" @click="update = false, member={  name:null, location:null,phone:null,phone_two:null,profession:null}" id="inputName4" placeholder="john doe">+</button>
+                                <button style="width:1in" class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click="createMember()" placeholder="john doe">Save</button>
+                                <button style="width:1in" class="btn btn-sm btn-outline-info mx-1" @click="updateMember" v-else id="inputName4"  placeholder="john doe">update</button>
+                                <button style="width:1in" class="btn btn-sm btn-success" v-if="update" @click="update = false, member={  name:null, location:null,phone:null,phone_two:null,profession:null}" id="inputName4" placeholder="john doe">+</button>
                             </div>
                             <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="table-responsive my-3 shadow border border-light border-5 "  style="max-height:4in">
-                            <span style="font-size:12px !important" class="float-end pe-4 py-3">{{selectedItems.length}} items selected</span>
-                            <table class="table table-hover table-striped" style="font-size:14px">
+                <div  v-if="activeIndex == 1">
+                    <div class="table-responsive my-3 cardBg shadow border border-light border-5 px-4 pb-2"  style="max-height:6in">
+                        <span style="font-size:12px !important" class="pe-4 py-3">{{selectedItems.length}} selected/{{members.length}} members </span>
+                            <table class=" table-hover table-striped table-dark " style="font-size:14px">
                             <thead class="sticky-top top-0">
                                 <tr class="">
                                     <th scope="col" style="width: 20px;"> 
@@ -120,11 +125,11 @@
                         </table>
                     </div>        
                 </div>
+                <div class="cardBg py-3"  v-if="activeIndex == 2">
+                <Messaging :selectedMembers="selectedItems"/>
+                </div>
             </div>
             
-            <div class="col col-12 border rounded-1 border-warning py-3">
-                <Messaging :selectedMembers="selectedItems"/>
-            </div>
         </div>
     </div>
 </template>
@@ -141,6 +146,8 @@ export default {
   },
     data() {
         return {
+            activeIndex: 0,
+            menuItems: ['Membership', 'Add Member', 'Send Message'],
             statuses:['single','married','child'],
             cells:['open house','glory chapel','porters', 'kodesh','N/A'],
             departments:['protocol','music', 'N/A'],
@@ -171,6 +178,9 @@ export default {
         if(this.token) this.getMembers()
     },
     methods:{
+        setActive(index) {
+        this.activeIndex = index; // Set the clicked item as active
+        },
         selectAllItems() {
             if (this.selectAll) {
                 this.selectedItems = this.members.map(member => member);
@@ -186,7 +196,7 @@ export default {
             return this.typeofDept[index]
         },
         createMember(){            
-            axios.post('http://ggc.pangtresses.com/api/members/', this.member,
+            axios.post('http://admin.greatergraceag.com/api/members/', this.member,
                       { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getMembers()
@@ -202,7 +212,7 @@ export default {
             })
         },
         updateMember(){
-            axios.post('http://ggc.pangtresses.com/api/members/update/'+this.member.id, this.member,
+            axios.post('http://admin.greatergraceag.com/api/members/update/'+this.member.id, this.member,
                       { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getMembers()
@@ -218,7 +228,7 @@ export default {
             })
         },
         deleteMember(id){
-            axios.get('http://ggc.pangtresses.com/api/members/delete/'+ id,
+            axios.get('http://admin.greatergraceag.com/api/members/delete/'+ id,
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.getMembers()
@@ -229,7 +239,7 @@ export default {
         }, 
         deleteSelectedItems() {
             const deletePromises = this.selectedItems.map(member =>
-                axios.delete(`http://ggc.pangtresses.com/api/members/delete/${member.id}`,           
+                axios.delete(`http://admin.greatergraceag.com/api/members/delete/${member.id}`,           
                 { headers:{'Authorization': `Bearer ${this.token}`}}));
             Promise.all(deletePromises)
             .then(responses => {
@@ -240,7 +250,7 @@ export default {
             });
         },
         getMembers(){
-            axios.get('http://ggc.pangtresses.com/api/members/',
+            axios.get('http://admin.greatergraceag.com/api/members/',
                       { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.members =  response.data
@@ -276,5 +286,95 @@ export default {
 }
 </script>
 <style >
-    
+        .pagination-outer {
+            text-align: center;
+        }
+
+        .pagination {
+            background-color: #fff;
+            border-radius: 5px !important;
+            overflow: hidden;
+            border: none !important;
+        }
+
+        a:focus,
+        a:active {
+            outline: none !important;
+            box-shadow: none !important;
+            color: #fff;
+        }
+        
+        .fa {
+            font-size: 11px ;
+            vertical-align: middle !important;
+            color: black;
+        }
+
+        .pagination li.active .fa {
+            color: #fff !important;
+        }
+
+        .pagination li a.page-link {
+            color: #6e6e6e;
+            background-color: transparent;
+            font-size: 13px;
+            padding: 3px 15px;
+            border: none;
+            transition: all 0.3s ease 0s;
+        }
+
+        .fa-home {
+            transform: scale(1.4, 1.4) ;
+        }
+
+        .pagination li:last-child a.page-link {
+            border: none;
+        }
+
+        .pagination li.active a.page-link,
+        .pagination li a.page-link:hover,
+        .pagination li.active a.page-link:hover {
+            background-color: transparent;
+            color: #fff;
+        }
+
+        .pagination li a.page-link:after {
+            content: '';
+            background-color: #01223e !important;
+            height: 100%;
+            width: 100%;
+            color: #fff;
+            transform: scaleY(0);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+            transition: all 0.3s;
+        }
+
+        .pagination li.active a.page-link:after,
+        .pagination li a.page-link:hover:after,
+        .pagination li.active a.page-link:hover:after {
+            transform: scaleY(1);
+            border-radius: 5px !important;
+
+        }      
+        @media (max-width: 767px) {
+          
+        .pagination li a.page-link {            
+            padding: 11px 8px !important;
+          } 
+
+        .fa{
+            font-size: 9px !important;
+          }
+
+        li a {
+            font-size: 12px !important;
+        }
+        
+        .page-item+.page-item {
+            padding-left: 0 !important;
+        }
+      }
 </style>

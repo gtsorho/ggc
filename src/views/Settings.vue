@@ -3,7 +3,7 @@
         <div class="row  p-2">
             <div class=" col-12 col-md-4 mx-2 ">
                 <div class="container ">
-                    <form class="row border rounded-1  border-warning needs-validation pb-4"    >
+                    <form class="row cardBg needs-validation py-2"    >
                         <div class="col-md-12">
                             <label for="inputName4" class="form-label">Username</label>
                             <input type="text" required v-model="user.username"  class="form-control form-control-sm" id="inputName4" placeholder="johndoe">
@@ -24,8 +24,8 @@
                     </form>
                 </div>
                 <div>
-                    <div class="table-responsive my-3">
-                        <table class="table table-hover " style="font-size:14px">
+                    <div class="table-responsive my-3 cardBg px-2">
+                        <table class="w-100 table-hover " style="font-size:14px">
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 20px;"> 
@@ -69,7 +69,7 @@
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <div class="row border rounded-1  border-warning needs-validation pb-4"  >
+                            <div class="row cardBg needs-validation py-2"  >
                                 <div class="col-md-12">
                                     <label for="inputName4" class="form-label">Ledger Title</label>
                                     <input type="text" required v-model="ledgerhead.title" class="form-control form-control-sm" id="inputName4" placeholder="GGC_Ledger_2024">
@@ -96,9 +96,9 @@
                                 </div>
                                 <div class="col-md-12 p-2 d-flex justify-content-between align-items-end ">
                                     <div>
-                                        <button class="btn btn-sm btn-outline-warning" v-if="!updateHead" id="inputName4" @click="createLedger()"  placeholder="john doe">Save</button>
-                                        <button class="btn btn-sm btn-outline-info mx-1" @click="updateLedgerHead" v-else id="inputName4"  placeholder="john doe">update</button>
-                                        <button class="btn btn-sm btn-success" v-if="updateHead" @click="updateHead = false, ledgerhead={ title:null, account_name:null, account_no:null, start_bal:null, active:false}" id="inputName4" placeholder="john doe">+</button>
+                                        <button style="width:1in" class="btn btn-sm btn-outline-warning" v-if="!updateHead" id="inputName4" @click="createLedger()"  placeholder="john doe">Save</button>
+                                        <button style="width:1in" class="btn btn-sm btn-outline-info mx-1" @click="updateLedgerHead" v-else id="inputName4"  placeholder="john doe">update</button>
+                                        <button style="width:1in" class="btn btn-sm btn-success" v-if="updateHead" @click="updateHead = false, ledgerhead={ title:null, account_name:null, account_no:null, start_bal:null, active:false}" id="inputName4" placeholder="john doe">+</button>
                                     </div>
                                     <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                                 </div>
@@ -407,12 +407,18 @@ export default {
 </script>
 <style scoped>
     .accordion-button{
-        background-color: rgba(255, 208, 0, 0.422);
+        background-image: linear-gradient(198deg, #01001c, #000633) !important;
+        color:#bababa
     }
     .accordion-button:focus{
         border-color: none
     }
     .accordion-button:not(.collapsed) {
-        background-color:rgba(255, 208, 0, 0.422);
+        background-image: linear-gradient(198deg, #01001c, #000633) !important;
+        color:#bababa
+    }
+    .accordion-collapse{
+        background: #000633d1 ;
+        color:#bababa
     }
 </style>

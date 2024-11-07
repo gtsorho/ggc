@@ -1,9 +1,9 @@
 <template >
-    <div class="container  ">
-        <div class="row  p-2">
-            <div class=" col mx-2 ">
+    <div class="container px-0 mx-0">
+        <div class="row  py-2">
+            <div class=" col mx-0 ">
                 <div class="container ">
-                    <form class="row border rounded-1  border-warning needs-validation pb-4" >
+                    <form class="row cardBg needs-validation py-2" >
                         <div class="col-md-3">
                             <label for="inputName1" class="form-label">Attendance</label>
                             <input type="text" required v-model="record.attendance"  class="form-control form-control-sm" id="inputName1" placeholder="256">
@@ -13,43 +13,27 @@
                             <input type="text" required v-model="record.vips"  class="form-control form-control-sm" id="inputName2" placeholder="14">
                         </div>
                          <div class="col-md-3">
-                            <label for="inputName3" class="form-label">Offering</label>
-                            <input type="text" required v-model="record.offering"  class="form-control form-control-sm" id="inputName3" placeholder="2456.00">
-                        </div>
-                         <div class="col-md-3">
-                            <label for="inputName4" class="form-label">Tithe</label>
-                            <input type="text" required v-model="record.tithe"  class="form-control form-control-sm" id="inputName4" placeholder="925.45">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="inputName5" class="form-label">Seed</label>
-                            <input type="text" required v-model="record.seed" class="form-control form-control-sm" id="inputName5" placeholder="1200.00">
-                        </div>
-                         <div class="col-md-2">
-                            <label for="inputName6" class="form-label">ThanksGiving</label>
-                            <input type="text" required v-model="record.thanksgiving" class="form-control form-control-sm" id="inputName6" placeholder="650.00">
-                        </div>
-                         <div class="col-md-2">
-                            <label for="inputName7" class="form-label">Welfare</label>
-                            <input type="text" v-model="record.welfare"  class="form-control form-control-sm" id="inputName7" placeholder="500.00">
-                        </div>
+                            <label for="inputName3" class="form-label">Income</label>
+                            <input type="text" required v-model="record.income"  class="form-control form-control-sm" id="inputName3" placeholder="2456.00">
+                         </div>
                         <div class="col-md-3">
                             <label for="inputName8" class="form-label">Date</label>
                             <input type="date" v-model="record.date"  class="form-control form-control-sm" id="inputName8">
                         </div>
                          <div class="col-md-12 d-flex align-items-end justify-content-between">
                             <div class="my-2">
-                                <button class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click.prevent="createRecord()"  placeholder="john doe">Save</button>
-                                <button class="btn btn-sm btn-outline-info mx-1" @click="updateRecord()" v-else id="inputName4"  placeholder="john doe">update</button>
-                                <button class="btn btn-sm btn-success" v-if="update" @click="update = false, record={  name:null, location:null,phone:null,phone_two:null,profession:null}" id="inputName4" placeholder="john doe">+</button>
+                                <button style="width:1in" class="btn btn-sm btn-outline-warning" v-if="!update" id="inputName4" type="submit" @click.prevent="createRecord()"  placeholder="john doe">Save</button>
+                                <button style="width:1in" class="btn btn-sm btn-outline-info mx-1" @click="updateRecord()" v-else id="inputName4"  placeholder="john doe">update</button>
+                                <button style="width:1in" class="btn btn-sm btn-success" v-if="update" @click="update = false, record={  name:null, location:null,phone:null,phone_two:null,profession:null}" id="inputName4" placeholder="john doe">+</button>
                             </div>
                             <p :class="msgColor" class="text-capitalize my-auto  d-block" style="font-size:13px">{{msg}}</p>
                         </div>
                     </form>
                 </div>
                 <div>
-                    <div class="table-responsive my-3"  style="max-height:4in">
-                        <table class="table table-hover " style="font-size:14px">
-                        <thead>
+                    <div class="table-responsive my-3 cardBg px-2"  style="max-height:70vh">
+                        <table class=" table-hover w-100" style="font-size:14px">
+                        <thead class="sticky-top top-0">
                             <tr>
                                 <th scope="col" style="width: 20px;"> 
                                     <input class="form-check-input"  type="checkbox" v-model="selectAll" @change="selectAllItems" id="flexCheckDefault">
@@ -57,11 +41,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Attendance</th>
                                 <th scope="col">VIPs</th>
-                                <th scope="col">Offering</th>
-                                <th scope="col">Tithe</th>
-                                <th scope="col">Seed</th>
-                                <th scope="col">Welfare</th>
-                                <th scope="col">ThanksGiving</th>
+                                <th scope="col">Income</th>
                                 <th scope="col">Date</th>
                                 <th scope="col" class="d-flex justify-content-center ">   
                                     <button class="btn btn-outline-danger btn-sm" v-if="selectAll || selectedItems.length > 0" @click="deleteSelectedItems" ><i class="bi bi-trash3"></i></button>
@@ -79,11 +59,7 @@
                                 <td>{{i +1}}</td>
                                 <td>{{record.attendance}}</td>
                                 <td>{{record.vips}}</td>
-                                <td>{{record.offering}}</td>
-                                <td>{{record.tithe}}</td> 
-                                <td>{{record.seed}}</td>
-                                <td>{{record.welfare}}</td>
-                                <td>{{record.thanksgiving}}</td>
+                                <td>{{record.income}}</td>
                                 <td>{{new Date(record.date).toDateString()}}</td>  
                                 <td class="d-flex justify-content-center ">
                                     <button class="btn-outline-warning btn btn-sm m-1" @click="assignRecord(record)"><i class="bi bi-pencil-square"></i></button>
@@ -124,11 +100,7 @@ export default {
             record:{
                 attendance:null,
                 vips:null,
-                offering:null,
-                tithe:null,
-                seed:null,
-                welfare:null,
-                thanksgiving:null,
+                income:null,
                 date: new Date().toISOString().split('T')[0],
             },
             token:null

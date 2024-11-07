@@ -1,7 +1,7 @@
 <template>
-  <div class="table-responsive" style="max-height: 6.5in" v-if="ledger.length > 0">
-    <table class="table table-hover table-striped" style="font-size: 14px">
-      <thead>
+  <div class="mt-3 cardBg px-2" style="max-height: 90vh" v-if="ledger.length > 0">
+    <table class="w-100  table-hover" style="font-size: 14px">
+      <thead class="sticky-top top-0">
         <tr class="table-info">
           <td colspan="4">
             <p class="p-0 m-0">Title: {{ ledgerhead.title }}</p>
@@ -22,7 +22,7 @@
       </thead>
       <hr class="my-1" />
 
-      <thead class="" style="position: sticky; top: 0">
+      <thead class="sticky-top top-0" style="position: sticky; top: 0">
         <tr>
           <td colspan="2">
             <button
@@ -30,7 +30,7 @@
               <i class="bi bi-plus-lg"></i> Transaction
             </button>
           </td>
-          <td colspan="4" style="background-color: #fff"></td>
+          <td colspan="4" ></td>
           <td class="bg-warning text-center text-light" colspan="2">
             Transaction
           </td>
@@ -76,9 +76,9 @@
                 : transaction.receivable_src
             }}
           </td>
-          <td class="table-warning">{{ transaction.credit.toFixed(2) }}</td>
-          <td class="table-warning">{{ transaction.debit.toFixed(2) }}</td>
-          <td class="table-success">{{ transaction.balance.toFixed(2) }}</td>
+          <td class="bgSame">{{ transaction.credit.toFixed(2) }}</td>
+          <td class="bgSame">{{ transaction.debit.toFixed(2) }}</td>
+          <td class="bgDiff">{{ transaction.balance.toFixed(2) }}</td>
         </tr>
       </tbody>
     </table>
@@ -87,13 +87,13 @@
       <div @click="handleContextMenuItem(2)" class=" py-0  border-0 text-muted  list-group-item list-group-item-action"><i class="bi bi-caret-right-fill d-none"></i> Delete</div>
     </div>
     <nav aria-label="Page navigation example">
-      <ul class="pagination pagination-sm  justify-content-center">
+      <ul class="pagination pagination-sm cardBg  justify-content-center">
         <li class="page-item rounded-pill" :class="{ disabled: pagination.currentPage === 1 }">
           <a class="page-link" @click="prevPage">Previous</a>
         </li>
 
-        <li v-for="page in pagination.totalPages" :key="page" class="page-item bg-transparent rounded-pill" :class="{ active: page === pagination.currentPage }" >
-          <a class="page-link bg-transparent border-secondary px-1 mx-1 rounded-1 text-dark" @click="gotoPage(page)">{{ page }}</a>
+        <li v-for="page in pagination.totalPages" :key="page" class="page-item bg-transparent rounded-pill text-light" :class="{ active: page === pagination.currentPage }" >
+          <a class="page-link bg-transparent border-secondary px-1 mx-1 rounded-1 text-light" @click="gotoPage(page)">{{ page }}</a>
         </li>
 
         <li class="page-item rounded-pill" :class="{disabled: pagination.currentPage === pagination.totalPages,}" >
@@ -238,7 +238,7 @@ tr {
 }
 .context-menu {
   position: absolute;
-  background-color: #f8f9fa;
+  background-image: linear-gradient(198deg, #01001c, #000633) !important;
   border: 1px solid #ced4da;
   padding: 5px;
   z-index: 1000;
@@ -249,7 +249,16 @@ tr {
 }
 
 .list-group-item:hover .bi{
-  color: #8b8b8b79;
+  color: #ffffff79;
   display: inline !important;
+}
+.bgSame{
+  background: rgba(255, 255, 0, 0.157);
+}
+.bgDiff{
+  background: rgba(0, 128, 0, 0.475);
+}
+td{
+  padding-block: 5px;
 }
 </style>

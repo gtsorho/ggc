@@ -1,25 +1,25 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary  border-bottom border-2" style="border-color:#c9c9c9!important">
+    <nav class="navbar navbar-expand-lg border-2 " style="border-color:#c9c9c9!important; background:#000633">
     <div class="container-fluid">
         <div>
-            <span style="font-size:20px;cursor:pointer" class="me-3"  v-show="sidebarbool" @click="$emit('changestate')" >&#9776;</span>
+            <span style="font-size:20px;cursor:pointer" class="me-3 text-light"  v-show="sidebarbool" @click="$emit('changestate')" >&#9776;</span>
         </div>
     <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="">&#9776;</span>
+      <span >&#9776;</span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <form class="d-block d-md-flex  mx-auto mb-2 mb-lg-0" role="search">
               <div class="form-check form-switch mx-4 my-auto" v-if="searchByDate" style="font-size: 0.8rem !important;" >
                 <input class="form-check-input" v-model="switchVal" type="checkbox" role="switch" @change="clearData" id="flexSwitchCheckDefault">
-                <label class="form-check-label" style="width: max-content;" for="flexSwitchCheckDefault">by date</label>
+                <label class="form-check-label text-light" style="width: max-content;" for="flexSwitchCheckDefault">by date</label>
               </div>
               
-            <VueDatePicker v-model="searchVal.date"  v-if="searchByDate && switchVal" placeholder="pick a date" class="mx-4" text-input auto-apply :enable-time-picker="false" @update:model-value="search()"/>
+            <VueDatePicker v-model="searchVal.date" style="  margin-top: 9px;" v-if="searchByDate && switchVal" placeholder="pick a date" class="mx-4" text-input auto-apply :enable-time-picker="false" @update:model-value="search()"/>
             <div>
               <input type="search"  v-if="searchByText" placeholder="Search here" style="font-size: 0.8rem !important;" class="search-field px-3 py-1 my-2 " v-model="searchVal.searchValue"  @keyup="search()"/>
             </div>
-            <VueDatePicker class=" mx-0 mx-lg-4 my-lg-2 my-2 " v-if="searchByRange && !switchVal" placeholder="select a range" v-model="searchVal.range" range multi-calendars auto-apply :enable-time-picker="false" @update:model-value="search()"/>
+            <VueDatePicker class=" mx-0 mx-lg-4 my-lg-2 my-2 "  v-if="searchByRange && !switchVal" placeholder="select a range" v-model="searchVal.range" range multi-calendars auto-apply :enable-time-picker="false" @update:model-value="search()"/>
         
         </form>
 
@@ -42,7 +42,7 @@
 
         
             <div class="ms-2 my-auto">
-                <p class="text-dark my-0">{{user.username}}</p>
+                <p class="text-light my-0">{{user.username}}</p>
             </div>
             <!-- <img src="../assets/profileImg.jpg" alt="Avatar" class="portfolio-img" style="width:50px; height:50px"> -->
         </div>        
@@ -274,6 +274,7 @@ export default {
 };
 </script>
 <style scoped>
+
 .portfolio-img {
   border-radius: 50%;
   object-fit: cover;
@@ -292,10 +293,11 @@ form {
   flex-direction: row;
 }
 .search-field {
-    background-color: rgb(238, 238, 238);
+    border-radius: 5px !important;
+    background-color: #ffffff5e !important;
+    color:#fff !important;
     border: none;
     width: 3in !important;
-    border-radius: 100px;
     outline: none;
 }
 
@@ -310,7 +312,7 @@ form {
   width: 20px;
   height: 20px;
   object-fit: cover;
-    color: rgb(69, 69, 69);
+  color: rgb(69, 69, 69);
 }
 .start-100 {
     left: 80% !important;
@@ -329,5 +331,16 @@ form {
 }
 .form-switch .form-check-input:focus {
   --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+}
+</style>
+
+<style>
+.dp__input_wrap > .dp__input  {
+  border-radius: 5px !important;
+  background-color: #ffffff5e !important;
+  color:#fff !important;
+  border: none;
+  width: 3in !important;
+  padding-block: 4px;
 }
 </style>

@@ -72,7 +72,7 @@ export default {
             font-family: 'Raleway', sans-serif !important;
         }
         body,html{
-            background-color: #ffffff !important;  
+            background-color: #c9c9c9 !important;  
         }
         #main {
         transition: margin-left .5s;
@@ -119,6 +119,31 @@ export default {
             box-shadow: 0 0 0 0.25rem rgb(23 76 254 / 0%)!important;
         }
 
+        th {
+            background-color: #000633;
+            color: white;
+            padding-block: 10px;
+        }   
+        td {
+            background-color: transparent;
+            color: white;
+        } 
+        tr {
+            border-top:#4444449d 1px solid !important;
+        }
+        tr:hover {
+            background: rgba(139, 139, 139, 0.157);
+        }
+        .cardBg{
+            background-image: linear-gradient(198deg, #01001c, #000633) !important;
+            color:#cdcdcd
+        }
+        .cardBg .form-control, .cardBg .form-select{
+            background: rgba(255, 255, 255, 0.408);
+            border-radius: 2px;
+            padding-block: 3px;
+            font-size: 13px;
+        }
 
 </style>
 <style>

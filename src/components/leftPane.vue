@@ -7,10 +7,10 @@
         <li class="list-group-item p-0 mt-0 fst-italic d-flex justify-content-between align-items-center">
             <h6 class="fw-bold">Your Breakdown</h6>
             
-            <span style="font-size:13px" class="text-dark">Starting: {{new Date(transactions[0][0].createdAt).toDateString()}}</span>
+            <span style="font-size:13px" class="text-light">Starting: {{new Date(transactions[0][0].createdAt).toDateString()}}</span>
         </li>
         <ul class="list-group my-4" style="font-size:13px">                                    
-            <li class="list-group-item p-0 mt-3 fw-bolder d-flex justify-content-between align-items-center">
+            <li class="list-group-item px-1 py-0 mt-3 fw-bolder d-flex justify-content-between align-items-center">
                 Total Expenditure
             <span class="text-dark">{{transactions[2].sumDebits}}</span>
             </li>

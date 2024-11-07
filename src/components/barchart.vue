@@ -72,7 +72,7 @@ export default {
             label: "Ref Max",
             backgroundColor: "#d9d9d9",
             barThickness: "15",
-            borderRadius: 50,
+            borderRadius: 0,
             borderSkipped: false,
           },
         ],
@@ -105,7 +105,6 @@ export default {
               display: true,
             },
              ticks: {
-                // forces step size to be 50 units
                 stepSize: 20
             }
           },

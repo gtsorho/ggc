@@ -8,23 +8,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull:true,
         },
-        offering: {
-            type: DataTypes.FLOAT,
-            allowNull:true,
-        },
-        tithe: {
-            type: DataTypes.FLOAT,
-            allowNull:true,
-        },
-        seed: {
-            type: DataTypes.FLOAT,
-            allowNull:true,
-        },
-        welfare: {
-            type: DataTypes.FLOAT,
-            allowNull:true,
-        },
-        thanksgiving: {
+        income: {
             type: DataTypes.FLOAT,
             allowNull:true,
         },

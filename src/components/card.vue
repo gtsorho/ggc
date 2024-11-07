@@ -1,16 +1,17 @@
 <template>
   <div>
-     <div class="card mb-3 bg-transparent" style="max-width: 540px;">
-            <div class="row g-0">
-                <div class="col-md-6">
+     <div class="card mb-3 bg-transparent border-0"  style="max-width: 540px;">
+            <div class="row g-0 text-light rounded-2 shadow" :style="'background:' +  card.bgColor">
+                <div class="col-12 col-lg-6 py-2">
                     <div class="card-body">
-                        <h5 class="card-title">{{card.title}}</h5>
-                        <p class="card-text fs-4 fw-bolder mb-0">GHS {{card.amount}}</p>
-                        <p class="card-text"><small class="text-muted">{{card.comment}}</small></p>
+                        <p class="card-title">{{card.title}}</p>
+                        <p class="card-text fw-bolder mb-0" style="font-size: calc(0.6em + 1vw)">GHS {{card.amount}}</p>
+                        <p class="card-text"><span class="text-lightMuted" style="font-size:13px">{{card.comment}}</span></p>
                     </div>
                 </div>
-                <div class="col-md-6 d-flex justify-content-center align-items-center" style="min-height: 9vh!important;">
-                  <LevelChart :innertext="card.percentage" :data="{
+                <div class="col-12 col-lg-6 py-2 d-flex justify-content-center align-items-center" style="min-height: 9vh!important;">
+                  <LevelChart 
+                  :innertext="card.percentage" :data="{
                     labels: ['shortfall', 'sold'],
                     datasets: [
                       {
@@ -18,7 +19,7 @@
                         data: [100 - card.percentage, card.percentage]
                       }
                     ]}" 
-                  />
+                  ></LevelChart>
                 </div>
             </div>
         </div>
@@ -73,5 +74,8 @@ form {
 }
 .top-0 {
     top: 4px !important;
+}
+text-lightMute{
+  color:rgb(237, 237, 237);
 }
 </style>

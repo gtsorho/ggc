@@ -4,12 +4,12 @@
           <Card   :card="cardx"/>
         </div>
       </div>
-      <div class="row">
+      <div class="row my-4">
         <div class="col-sm-8 mb-3 mb-sm-0">
-          <div class="card bg-transparent">
+          <div class="card shadow border-0 cardBg">
             <div class="card-body">
               <div class="d-flex card-title">
-                <div class="p-2 flex-grow-1 fw-bold">Your Monthly Expense</div>
+                <div class="p-2 flex-grow-1 fw-bold text-light">Your Monthly Expense</div>
                 <div class="p-2 " style="font-size:12px">
                   <select class="form-select form-select-sm" v-model="chart_cat" aria-label="Small select example">
                     <option selected disabled >Select View</option>
@@ -27,10 +27,10 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="card bg-transparent">
+          <div class="card shadow border-0 cardBg">
             <div class="card-body">
               <div class="d-flex card-title">
-                <div class="p-2 flex-grow-1 fw-bold">Most Expenses </div>
+                <div class="p-2 flex-grow-1 fw-bold text-light">Most Expenses </div>
                 <div class="p-2 " style="font-size:12px">
                   <select class="form-select form-select-sm" v-model="pie_cat" aria-label="Small select example">
                     <option selected disabled >Select View</option>
@@ -47,17 +47,14 @@
           </div>
         </div>
       </div>
-      <div class="card mt-3">
+      <div class="card shadow border-0 mt-3 cardBg">
         <div class="card-body">
           <div class="d-flex card-title">
-            <div class="p-2 flex-grow-1 fw-bold">Current Ledger</div>
-            <div class="p-2 " style="font-size:12px">Data Updates Every 3 Hrs
-              <button class=" btn btn-secondary btn-sm"  style="font-size:12px"> View All Orders</button>
-            </div>
+            <div class="p-2 flex-grow-1 fw-bold text-light">Current Ledger</div>
           </div>
             <div v-if="records.length > 0">
-              <div class="table-responsive my-3">
-                  <table class="table table-hover " style="font-size:14px">
+              <div class="table-responsive my-3 cardBg px-2 bg-transparent">
+                  <table class="table-hover  w-100" style="font-size:14px">
                   <thead>
                       <tr>
                           <th scope="col">#</th>
@@ -120,21 +117,25 @@ export default {
                 amount:'GHS 20.4',
                 percentage:95,
                 comment:'Savings counted',
-                color:'#ffc412'
+                color:'#ffc412',
+                bgColor:'#282360'
+
               },
               {
                 title:'Total Owed',
                 amount:'GHS 820.21',
-                percentage:80,
+                percentage:0,
                 comment:'02-08 Closest due Date',
-                color:'#02802e'
+                color:'#a00404',
+                bgColor:'#5c0000'
               },
               {
                 title:'Overall Expenses',
                 amount:'GHS 18.2K',
                 percentage:85,
                 comment:'Available to payout',
-                color:'#a00404'
+                color:'#a00404',
+                bgColor:'#74004b'
               }
             ]
         }
@@ -236,6 +237,18 @@ export default {
     background-color: #fbf9f9;
     border-color: #f9fafb;
     box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 0%) !important;
+    }
+    table td{
+      background: transparent;
+    }
+
+    table th{
+      background: #000633;
+      color:#fff;
+    }
+
+    table td{
+      padding-block: 8px !important; 
     }
 
 </style>

@@ -30,13 +30,12 @@ data() {
         //   labels: ['shortfall', 'sold'],
         //   datasets: [
         //     {
-        //       backgroundColor: ['#d9d9d9', '#174cfe'],
         //       data: [20, 80]
         //     }
         //   ]
-        // },
+        // }, 
         options: {
-            cutout:"80%",
+        cutout:"80%",
         responsive: true,
         maintainAspectRatio: true,
         plugins: {
@@ -56,6 +55,7 @@ data() {
           ctx.restore();
           var fontSize = (height / 70).toFixed(2);
           ctx.font = fontSize + "em Raleway";
+          ctx.fillStyle = '#fff';
           ctx.textBaseline = "middle";
           var text = `${this.inner}%`, 
             textX = Math.round((width - ctx.measureText(text).width) / 2),

@@ -92,7 +92,7 @@ export default {
                     {
                         label: 'My First Dataset',
                         data: this.categoryData[0],
-                        backgroundColor:['#ff7e44', '#7967d6' ,'#8cc086','#ffc412'],
+                        backgroundColor:['#000633', '#fdd401' ,'#36cc00','#c200ad','#00535c','#970000'],
                         hoverOffset: 4,
                         pointStyle: 'rectRot',
                     }

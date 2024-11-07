@@ -12,7 +12,7 @@ import Records from '@/views/Record.vue'
 import Settings from '@/views/Settings.vue'
 import Events from '@/views/Event.vue'
 import NewMember from '@/views/NewMember.vue'
-
+import EventListing from '../views/EventListing.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,12 +22,16 @@ const router = createRouter({
       name: 'login',
       component: HomeView
     },
-        {
-          path: '/newmember',
-          name: 'newmember',
-          component: NewMember
-        },
-
+    {
+      path: '/newmember',
+      name: 'newmember',
+      component: NewMember
+    },
+    {
+      path: '/eventlist',
+      name: 'eventlist',
+      component: EventListing
+    },
     {
       path: '/main',
       name: 'main',
