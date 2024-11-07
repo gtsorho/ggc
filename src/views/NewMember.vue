@@ -104,7 +104,7 @@ export default {
   },
     data() {
         return {
-            statuses:['single','married','child'],
+            statuses:['single','married','minor'],
             cells:['open house','glory chapel','porters', 'kodesh', 'sureReigners','N/A'],
             departments:['protocol','music', 'N/A'],
             ministries:['women','men','youth','children'],
