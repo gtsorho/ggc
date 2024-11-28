@@ -57,7 +57,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(expense, i) in expenses" :key="i">
+                            <tr v-for="(expense, i) in expenses.reverse()" :key="i">
                                 <td>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" v-model="selectedItems" :value="expense.id"  id="flexCheckDefault">

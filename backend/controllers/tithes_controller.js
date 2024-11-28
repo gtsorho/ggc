@@ -126,21 +126,32 @@ module.exports = {
                     message: `Hello ${tithes.map(tithe => tithe.member.name.split(' ')[0])}, \n\nYour Receipt TTE0${tithes.map(tithe => tithe.id)} of Tithe Paid: GHS${tithes.map(tithe => tithe.amount.toFixed(2))}.\nDate:${(tithes.map(tithe => new Date(tithe.date).toDateString()))} \n\n Thank you and have a Blessed Week`
                 }  
                 
-                // send sms****************************************
-                axios.post('https://api.mnotify.com/api/sms/quick?key=tAUkX60KwFyFKzxCv4YZKdGH3', 
-                {
-                    recipient: body.recipient,
-                    sender: 'GGC A/G',
-                    message: body.message,
-                    is_schedule: 'false',
-                    schedule_date: ''
-                })
+                // send sms**************************************** https://apps.mnotify.net/smsapi?key=xxxxxxxxxx&to=xxxxxxx&msg=xxxxxxxx&sender_id=xxxxx 
+                // axios.post('https://api.mnotify.com/api/sms/quick?key=tAUkX60KwFyFKzxCv4YZKdGH3', 
+                // {
+                //     recipient: body.recipient,
+                //     sender: 'GGC A/G',
+                //     message: body.message,
+                //     is_schedule: 'false',
+                //     schedule_date: ''
+                // }
+                // )
+                // .then(response => {
+                //      resMsg =  response.data
+                // })
+                // .catch(error =>{
+                //     console.log(error)
+                // })
+
+                axios.get(`https://apps.mnotify.net/smsapi?key=v0lu4bVhQuMIU5hrxncAJ5WAE&to=${body.recipient[0]}&msg=${body.message}&sender_id=GGC A/G`)
                 .then(response => {
                      resMsg =  response.data
                 })
                 .catch(error =>{
                     console.log(error)
                 })
+
+
                 // End send sms****************************************
 
             }

@@ -52,7 +52,7 @@
                             </tr>
                         </thead>
                         <tbody v-if="tithes.length > 0">
-                            <tr v-for="(tithe, i) in tithes" :key="i">
+                            <tr v-for="(tithe, i) in tithes.reverse()" :key="i">
                                 <td>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" v-model="selectedItems" :value="tithe.id"  id="flexCheckDefault">
