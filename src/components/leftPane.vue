@@ -10,27 +10,27 @@
             <span style="font-size:13px" class="text-light">Starting: {{new Date(transactions[0][0].createdAt).toDateString()}}</span>
         </li>
         <ul class="list-group my-4" style="font-size:13px">                                    
-            <li class="list-group-item px-1 py-0 mt-3 fw-bolder d-flex justify-content-between align-items-center">
+            <li class="list-group-item rounded-1 px-1 py-0 mt-3 fw-bolder opacity-75 d-flex justify-content-between align-items-center">
                 Total Expenditure
             <span class="text-dark">{{transactions[2].sumDebits}}</span>
             </li>
             
-            <span class="border border-3 border-danger shadow rounded-1 my-2 p-1" style="border-color:#ff0e0e5e!important">
-                <li class="list-group-item fw-bolder p-0   d-flex justify-content-between align-items-center" >
+            <span class="border border-1 opacity-75 border-danger shadow rounded-1 my-2 p-1" style="border-color:#ff0e0e5e!important">
+                <li class="list-group-item px-1 fw-bolder p-0   d-flex justify-content-between align-items-center" >
                 Outstanding Debt
                 <span class="text-dark" v-if="debts">{{debts[1].toFixed(2)}}</span>
                 </li>
-                <li class="list-group-item p-0 mt-0 fst-italic d-flex justify-content-between align-items-center">
+                <li class="list-group-item  px-1 opacity-75 p-0 mt-0 fst-italic d-flex justify-content-between align-items-center">
                 Closest Due Date
                 <span v-if="closestDate" class="text-dark">{{ new Date(closestDate.due).toDateString() }}</span>
                 </li>
             </span>
             
-            <li class="list-group-item p-0 my-4 d-flex fw-bolder justify-content-between align-items-center"  >
+            <li class="list-group-item opacity-75 rounded-1 px-1 py-0 my-4 d-flex fw-bolder justify-content-between align-items-center"  >
                 Account Balance
                 <span class="badge bg-warning  text-dark rounded-pill">Ghs {{transactions[2].lastEntryBalance.toFixed(2)}}</span>
             </li>
-            <li class="list-group-item p-0  d-flex  justify-content-center align-items-center"  >
+            <li class="list-group-item p-0 rounded-1  opacity-75 d-flex  justify-content-center align-items-center"  >
                <span class="badge bg-outline-info py-2 px-4 text-dark rounded-pill"><slot></slot></span>
             </li>
             <!-- <li class="list-group-item p-0 mt-3  d-flex justify-content-between align-items-center">
