@@ -16,28 +16,28 @@ const event = require('./event')
 
 require('dotenv').config()
 
-// const sequelize = new Sequelize(
-//    'ch_db',
-//    'clq2aij630fn69sqh642nbirv',
-//    'd5R6SnN5qBXkzbI9RMlqBGrg',
-//    {
-//       host: 'clq2aij65000gqh9s9b32denl',
-//       dialect: 'mysql',
-//       logging: false
-//    }
-// );
-
 const sequelize = new Sequelize(
    'ch_db',
    'clq2aij630fn69sqh642nbirv',
    'd5R6SnN5qBXkzbI9RMlqBGrg',
    {
-      host: '5.182.33.208',
-      port: 9002,
+      host: 'clq2aij65000gqh9s9b32denl',
       dialect: 'mysql',
       logging: false
    }
 );
+
+// const sequelize = new Sequelize(
+//    'ch_db',
+//    'clq2aij630fn69sqh642nbirv',
+//    'd5R6SnN5qBXkzbI9RMlqBGrg',
+//    {
+//       host: '5.182.33.208',
+//       port: 9002,
+//       dialect: 'mysql',
+//       logging: false
+//    }
+// );
 
 
 const db = {}
