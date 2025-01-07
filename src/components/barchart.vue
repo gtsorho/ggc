@@ -70,7 +70,7 @@ export default {
           {
             data: Array.from({ length: 12 }, () => Math.max(...this.monthlyData) +20),
             label: "Ref Max",
-            backgroundColor: "#d9d9d9",
+            backgroundColor: "#d9d9d973",
             barThickness: "15",
             borderRadius: 0,
             borderSkipped: false,

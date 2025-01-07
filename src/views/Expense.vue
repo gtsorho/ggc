@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="table-responsive mt-3 cardBg px-2"  style="max-height:70vh">
+                    <div class="table-responsive mt-3 cardBg"  style="max-height:70vh">
                         <table class="table-hover w-100 " style="font-size:14px">
                         <thead>
                             <tr>
@@ -57,7 +57,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(expense, i) in expenses.reverse()" :key="i">
+                            <tr v-for="(expense, i) in expenses" :key="i">
                                 <td>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" v-model="selectedItems" :value="expense.id"  id="flexCheckDefault">
@@ -177,7 +177,7 @@ export default {
             axios.get('http://admin.greatergraceag.com/api/expenses/',
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
-                this.expenses =  response.data
+                this.expenses =  response.data.reverse()
                 this.total = this.expenses.reduce((sum, expense) => sum + expense.amount, 0);
             })
             .catch(error =>{

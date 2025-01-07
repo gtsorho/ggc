@@ -31,7 +31,7 @@
                     </form>
                 </div>
                 <div>
-                    <div class="table-responsive my-3 cardBg px-2"  style="max-height:70vh">
+                    <div class="table-responsive my-3 cardBg"  style="max-height:70vh">
                         <table class=" table-hover w-100" style="font-size:14px">
                         <thead class="sticky-top top-0">
                             <tr>
@@ -185,8 +185,7 @@ export default {
             axios.get('http://admin.greatergraceag.com/api/records/', 
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
-                this.records =  response.data
-                console.log(this.records)
+                this.records =  response.data.reverse()
             })
             .catch(error =>{
                 console.log(error)

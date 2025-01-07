@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="table-responsive mt-3 cardBg px-2"  style="max-height:70vh">
+                    <div class="table-responsive mt-3 cardBg"  style="max-height:70vh">
                         <table class="w-100 table-hover" style="font-size:14px">
                         <thead>
                             <tr>
@@ -52,7 +52,7 @@
                             </tr>
                         </thead>
                         <tbody v-if="tithes.length > 0">
-                            <tr v-for="(tithe, i) in tithes.reverse()" :key="i">
+                            <tr v-for="(tithe, i) in tithes" :key="i">
                                 <td>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" v-model="selectedItems" :value="tithe.id"  id="flexCheckDefault">
@@ -162,7 +162,7 @@ export default {
             axios.get('http://admin.greatergraceag.com/api/tithes/',
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
-                this.tithes =  response.data
+                this.tithes =  response.data.reverse()
             })
             .catch(error =>{
                 console.log(error)

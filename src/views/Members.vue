@@ -72,8 +72,8 @@
                     </div>
                 </div>
                 <div  v-if="activeIndex == 1">
-                    <div class="table-responsive my-3 cardBg shadow border border-light border-5 px-4 pb-2"  style="max-height:6in">
-                        <span style="font-size:12px !important" class="pe-4 py-3">{{selectedItems.length}} selected/{{members.length}} members </span>
+                    <div class="table-responsive my-3 cardBg shadow rounded-1 border-5 pb-2"  style="max-height:6in">
+                        <span style="font-size:12px !important" class="pe-4 py-3 ms-3">{{selectedItems.length}} selected/{{members.length}} members </span>
                             <table class=" table-hover table-striped table-dark " style="font-size:14px">
                             <thead class="sticky-top top-0">
                                 <tr class="">
@@ -90,7 +90,7 @@
                                     <th scope="col">Location</th>
                                     <th scope="col">Ministry</th>
                                     <th scope="col">Dept</th>
-                                    <th scope="col">Cell</th>
+                                    <!-- <th scope="col">Cell</th> -->
                                 <th scope="col" class="d-flex justify-content-center ">   
                                     <button class="btn btn-outline-danger btn-sm" v-if="selectAll || selectedItems.length > 0" @click="deleteSelectedItems" ><i class="bi bi-trash3"></i></button>
                                     <i class="bi bi-three-dots" v-else></i>                                 
@@ -106,7 +106,7 @@
                                 </td>
                                 <td>{{i +1}}</td>
                                 <td>{{member.name}}</td>
-                                <td>{{member.dob}}</td>
+                                <td>{{toDateString(member.dob)}}</td>
                                 <td>{{member.status}}</td>
                                 <td>{{member.phone}}</td>
                                 <td>{{member.phone_two}}</td>
@@ -114,7 +114,7 @@
                                 <td>{{member.location}}</td>  
                                 <td>{{member.ministry}}</td>  
                                 <td>{{member.department}}</td>  
-                                <td>{{member.cell}}</td>  
+                                <!-- <td>{{member.cell}}</td>   -->
 
                                 <td class="d-flex justify-content-center ">
                                     <button class="btn-outline-warning btn btn-sm m-1" @click="assignMember(member)"><i class="bi bi-pencil-square"></i></button>
@@ -146,8 +146,8 @@ export default {
   },
     data() {
         return {
-            activeIndex: 0,
-            menuItems: ['Membership', 'Add Member', 'Send Message'],
+            activeIndex: 1,
+            menuItems: ['Add Member', 'Membership', 'Send Message'],
             statuses:['single','married','child'],
             cells:['open house','glory chapel','porters', 'kodesh','N/A'],
             departments:['protocol','music', 'N/A'],
@@ -258,6 +258,12 @@ export default {
             .catch(error =>{
                 console.log(error)
             })
+        },
+        toDateString(date){
+            let options = { year: 'numeric', month: 'long', day: 'numeric' };
+            if(date){
+                return new Date(date).toLocaleDateString('en-US', options);
+            }
         },
         getCookie(cname) {
         let name = cname + "=";

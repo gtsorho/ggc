@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg border-2 " style="border-color:#c9c9c9!important; background:#000633">
+    <nav class="navbar navbar-expand-lg border-2 " style="border-color:#c9c9c9!important;            background-image: linear-gradient(198deg, #797979, #01001c) !important;">
     <div class="container-fluid">
         <div>
             <span style="font-size:20px;cursor:pointer" class="me-3 text-light"  v-show="sidebarbool" @click="$emit('changestate')" >&#9776;</span>

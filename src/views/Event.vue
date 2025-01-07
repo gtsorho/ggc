@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="table-responsive mt-3 cardBg px-2"  style="max-height:70vh">
+                    <div class="table-responsive mt-3 cardBg"  style="max-height:70vh">
                         <table class="w-100 table-hover " style="font-size:14px">
                         <thead>
                             <tr>

@@ -11,24 +11,24 @@
       </div>
 
         <hr class=" mx-2" style="border: 1.55px solid rgb(120 120 120)">  
-        <router-link :to="{name:'dashboards'}" class="btn nav_btn my-2" @click="activeBtn = 'Dashboard'" :class="{active: activeBtn === 'Dashboard' }" ><i class="bi bi-columns-gap me-1" ></i><span v-if="sidebarbool">Dashboard</span></router-link>
-        <router-link :to="{name:'members'}" class="btn nav_btn my-2" @click="activeBtn = 'Members'" :class="{active: activeBtn === 'Members' }" ><i class="bi bi-people me-1" ></i><span v-if="sidebarbool">Members</span></router-link>
-        <router-link :to="{name:'incomes'}" class="btn nav_btn my-2" @click="activeBtn = 'Income'" :class="{active: activeBtn === 'Income' }" ><i class="bi bi-wallet2 me-1" ></i><span v-if="sidebarbool">Income</span> </router-link>
-        <router-link :to="{name:'tithes'}" class="btn nav_btn my-2" @click="activeBtn = 'Tithe'" :class="{active: activeBtn === 'Tithe' }" ><i class="bi bi-currency-exchange me-1" ></i><span v-if="sidebarbool">Tithe</span> </router-link>
-        <router-link :to="{name:'debts'}" class="btn nav_btn my-2"  @click="activeBtn = 'Debts'" :class="{active: activeBtn === 'Debts' }"><i class="bi bi-receipt me-1" ></i><span v-if="sidebarbool">Debts</span> </router-link>
-        <router-link :to="{name:'expenses'}" class="btn nav_btn my-2"  @click="activeBtn = 'Expenses'" :class="{active: activeBtn === 'Expenses' }"><i class="bi bi-cash-coin me-1" ></i><span v-if="sidebarbool">Expenses</span></router-link>
-        <router-link :to="{name:'ledgers'}" class="btn nav_btn my-2"  @click="activeBtn = 'Ledger'" :class="{active: activeBtn === 'Ledger' }"><i class="bi bi-file-ruled me-1" ></i><span v-if="sidebarbool">Ledger</span></router-link>
-        <router-link :to="{name:'records'}" class="btn nav_btn my-2"  @click="activeBtn = 'Records'" :class="{active: activeBtn === 'Records' }"><i class="bi bi-card-list me-1" ></i><span v-if="sidebarbool">Records</span></router-link>    
-        <router-link :to="{name:'events'}" class="btn nav_btn my-2"  @click="activeBtn = 'Events'" :class="{active: activeBtn === 'Events' }"><i class="bi bi-calendar2-event me-1" ></i><span v-if="sidebarbool">Events</span></router-link>    
+        <router-link :to="{name:'dashboards'}" class="btn nav_btn my-3 py-0"  @click="activeBtn = 'Dashboard'" :class="{active: activeBtn === 'Dashboard' }" ><i class="bi bi-columns-gap me-1" ></i><span v-if="sidebarbool">Dashboard</span></router-link>
+        <router-link :to="{name:'members'}" class="btn nav_btn my-3 py-0"  @click="activeBtn = 'Members'" :class="{active: activeBtn === 'Members' }" ><i class="bi bi-people me-1" ></i><span v-if="sidebarbool">Members</span></router-link>
+        <router-link :to="{name:'incomes'}" class="btn nav_btn my-3 py-0"  @click="activeBtn = 'Income'" :class="{active: activeBtn === 'Income' }" ><i class="bi bi-wallet2 me-1" ></i><span v-if="sidebarbool">Income</span> </router-link>
+        <router-link :to="{name:'tithes'}" class="btn nav_btn my-3 py-0"  @click="activeBtn = 'Tithe'" :class="{active: activeBtn === 'Tithe' }" ><i class="bi bi-currency-exchange me-1" ></i><span v-if="sidebarbool">Tithe</span> </router-link>
+        <router-link :to="{name:'debts'}" class="btn nav_btn my-3 py-0"   @click="activeBtn = 'Debts'" :class="{active: activeBtn === 'Debts' }"><i class="bi bi-receipt me-1" ></i><span v-if="sidebarbool">Debts</span> </router-link>
+        <router-link :to="{name:'expenses'}" class="btn nav_btn my-3 py-0"   @click="activeBtn = 'Expenses'" :class="{active: activeBtn === 'Expenses' }"><i class="bi bi-cash-coin me-1" ></i><span v-if="sidebarbool">Expenses</span></router-link>
+        <router-link :to="{name:'ledgers'}" class="btn nav_btn my-3 py-0"   @click="activeBtn = 'Ledger'" :class="{active: activeBtn === 'Ledger' }"><i class="bi bi-file-ruled me-1" ></i><span v-if="sidebarbool">Ledger</span></router-link>
+        <router-link :to="{name:'records'}" class="btn nav_btn my-3 py-0"   @click="activeBtn = 'Records'" :class="{active: activeBtn === 'Records' }"><i class="bi bi-card-list me-1" ></i><span v-if="sidebarbool">Records</span></router-link>    
+        <router-link :to="{name:'events'}" class="btn nav_btn my-3 py-0"   @click="activeBtn = 'Events'" :class="{active: activeBtn === 'Events' }"><i class="bi bi-calendar2-event me-1" ></i><span v-if="sidebarbool">Events</span></router-link>    
     </span>
     </div>
     <div class="mt-auto py-4" style="width:100%">
       <ul class="list-group list-group-flush" :class="sidebarbool ? 'px-4': ''">
         <li class="list-group-item border-0 p-0 my-2">
-          <router-link :to="{name:'settings'}" class="btn btn-sm setBtn justify-content-center d-flex" ><i class="bi bi-gear mx-2" ></i><span v-if="sidebarbool">Settings</span> </router-link>
+          <router-link :to="{name:'settings'}" class="btn btn-sm setBtn justify-content-center py-0 d-flex" ><i class="bi bi-gear mx-2" ></i><span v-if="sidebarbool">Settings</span> </router-link>
         </li>
         <li class="list-group-item border-0 p-0 my-0">
-          <router-link :to="{name:'login'}" class=" btn btn-sm logout justify-content-center d-flex" @click="logout()" ><i class="bi bi-power mx-2"></i><span v-if="sidebarbool">Logout</span> </router-link>
+          <router-link :to="{name:'login'}" class=" btn btn-sm logout justify-content-center py-0 d-flex" @click="logout()" ><i class="bi bi-power mx-2"></i><span v-if="sidebarbool">Logout</span> </router-link>
         </li>
       </ul>
     </div> 
@@ -163,6 +163,7 @@ export default {
   left: 0;
   /* background: #000633; */
   background-image: linear-gradient(198deg, #01001c, #000633) !important;
+  
   /* border-right: 3px solid rgb(201, 201, 201); */
   overflow-x: hidden;
   transition: 0.5s;
@@ -182,16 +183,18 @@ export default {
 
 .sidenav .nav_btn:hover {
   color: #ffffff;
-  background-color: #ffc412 !important;
+  background-image: linear-gradient(198deg, #000633, #ffc412) !important;
+  border: none;
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .sidenav .settings:hover {
-  color:  #ffc412 !important;
+  background-image: linear-gradient(198deg,#000633, #ffc412) !important;
+
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .active {
-  background-color: #ffc412 !important;
+  background-image: linear-gradient(198deg, #000633, #ffc412) !important;
   color: #fff !important;
   border: 0px;
  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -212,18 +215,18 @@ export default {
 }
 
 .logout{
-  border:#5c0000 2px solid;
+  border:#5c0000 1px solid;
 }
 .logout:hover{
-  border:#5c0000 2px solid;
+  border:#5c0000 1px solid;
   background-color:#5c0000 ;
 }
 
 .setBtn{
-  border:#aa9901 2px solid;
+  border:#aa9901 1px solid;
 }
 .setBtn:hover{
-  border:#aa9901 2px solid;
+  border:#aa9901 1px solid;
   background-color:#aa9901 ;
 }
 </style>

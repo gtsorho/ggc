@@ -120,13 +120,17 @@ export default {
         }
 
         th {
-            background-color: #000633;
+            background-color: #01001c;
             color: white;
+            font-weight: 800;
             padding-block: 10px;
+            padding-inline: 10px;
         }   
         td {
             background-color: transparent;
             color: white;
+            padding-inline: 10px;
+
         } 
         tr {
             border-top:#4444449d 1px solid !important;
@@ -135,7 +139,7 @@ export default {
             background: rgba(139, 139, 139, 0.157);
         }
         .cardBg{
-            background-image: linear-gradient(198deg, #01001c, #000633) !important;
+            background-image: linear-gradient(198deg, #797979, #01001c) !important;
             color:#cdcdcd
         }
         .cardBg .form-control, .cardBg .form-select{

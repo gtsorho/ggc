@@ -9,7 +9,7 @@
           <div class="card shadow border-0 cardBg">
             <div class="card-body">
               <div class="d-flex card-title">
-                <div class="p-2 flex-grow-1 fw-bold text-light">Your Monthly Expense</div>
+                <div class="p-2 flex-grow-1 fw-bold text-light">Your Monthly {{chart_cat}}</div>
                 <div class="p-2 " style="font-size:12px">
                   <select class="form-select form-select-sm" v-model="chart_cat" aria-label="Small select example">
                     <option selected disabled >Select View</option>
@@ -30,7 +30,7 @@
           <div class="card shadow border-0 cardBg">
             <div class="card-body">
               <div class="d-flex card-title">
-                <div class="p-2 flex-grow-1 fw-bold text-light">Most Expenses </div>
+                <div class="p-2 flex-grow-1 fw-bold text-light">Most {{pie_cat}} </div>
                 <div class="p-2 " style="font-size:12px">
                   <select class="form-select form-select-sm" v-model="pie_cat" aria-label="Small select example">
                     <option selected disabled >Select View</option>
@@ -50,10 +50,10 @@
       <div class="card shadow border-0 mt-3 cardBg">
         <div class="card-body">
           <div class="d-flex card-title">
-            <div class="p-2 flex-grow-1 fw-bold text-light">Current Ledger</div>
+            <div class="p-2 flex-grow-1 fw-bold text-light">Records</div>
           </div>
             <div v-if="records.length > 0">
-              <div class="table-responsive my-3 cardBg px-2 bg-transparent">
+              <div class="table-responsive my-3 cardBg bg-transparent">
                   <table class="table-hover  w-100" style="font-size:14px">
                   <thead>
                       <tr>
@@ -107,8 +107,8 @@ export default {
     data() {
         return {
             token:null,
-            chart_cat:'Expenses',
-            pie_cat:'Expenses',
+            chart_cat:'Income',
+            pie_cat:'Income',
             reports:null,
             records:[],
             uppercards:[
@@ -166,7 +166,7 @@ export default {
             var amount = response.data.totalDebtBalance[0].totalDebtBalance
             this.uppercards[1].amount = amount == '' || amount == null ? 0 : amount.toFixed(2)
             this.uppercards[1].percentage = (response.data.totalDebtBalance[0].totalDebtBalance/(response.data.totalDebtBalance[0].totalDebtBalance + response.data.totalPaid[0].totalPaid)) * 100
-            this.uppercards[2].amount = response.data.totalExpensesSum.toFixed(2)
+            this.uppercards[2].amount = response.data.totalExpensesSum?.toFixed(2) || 0
 
             this.reports = response.data
           })

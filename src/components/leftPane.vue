@@ -80,6 +80,7 @@ export default {
             { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
                 this.debts =  response.data
+                console.log(response.data)
                 this.closestDate = this.findClosestDate(this.debts[0])
             })
             .catch(error =>{

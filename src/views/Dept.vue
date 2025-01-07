@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="table-responsive my-3 cardBg px-2" style="max-height:70vh">
+                    <div class="table-responsive my-3 cardBg" style="max-height:70vh">
                         <table class="table-hover w-100" style="font-size:14px">
                         <thead class="sticky-top top-0">
                             <tr>
@@ -64,7 +64,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(debt, i) in debts.reverse()" :key="i">
+                            <tr v-for="(debt, i) in debts" :key="i">
                                 <td>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" v-model="selectedItems" :value="debt.id"  id="flexCheckDefault">
@@ -194,7 +194,7 @@ export default {
             axios.get('http://admin.greatergraceag.com/api/debts/',
              { headers:{'Authorization': `Bearer ${this.token}`}})
             .then(response => {
-                this.debts =  response.data[0]
+                this.debts =  response.data[0].reverse()
             })
             .catch(error =>{
                 console.log(error)
