@@ -20,7 +20,7 @@ module.exports = {
         const result = await db.debt.findAll({
             where:{ledgerHeadId: activeLedger_head.id},
             attributes: [
-              [Sequelize.fn('SUM', Sequelize.literal('CASE WHEN merged = true THEN COALESCE(balance, 0) ELSE COALESCE(amount, 0) END')), 'totalBalance']
+              [Sequelize.fn('SUM', Sequelize.literal('CASE WHEN merged = true THEN balance ELSE amount END')), 'totalBalance']
             ]
           });
       
